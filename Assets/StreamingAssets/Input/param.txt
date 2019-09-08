@@ -1,0 +1,5 @@
+timeRest1min:0.1
+timeRest1max:0.1
+timeRest2:3
+timeQuestion:25
+timeAnswer:1

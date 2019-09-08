@@ -1,0 +1,11 @@
+PartcipantID:1
+InitialTimeStamp:15-43-34-638
+block;trial;eventType;elapsedTime
+1;1;Trial;62
+1;1;ParticipantSkip;826
+1;1;TrialAnswer;854
+1;1;ParticipantAnswer;3887
+1;1;InterTrialRest;3903
+1;2;Trial;4043
+1;2;ParticipantSkip;4657
+1;2;TrialAnswer;4686

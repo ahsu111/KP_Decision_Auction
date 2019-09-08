@@ -1,0 +1,8 @@
+PartcipantID:1
+InitialTimeStamp:16-22-10-217
+block;trial;eventType;elapsedTime
+1;1;Trial;62
+1;1;ParticipantSkip;3233
+1;1;TrialAnswer;3260
+1;1;InterTrialRest;4306
+1;1;BDM_Auction;4444

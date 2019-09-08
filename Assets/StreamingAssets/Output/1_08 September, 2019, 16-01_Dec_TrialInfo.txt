@@ -1,0 +1,7 @@
+PartcipantID:1
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
+1;1;1;1;1.099442;1;48;(8,2.5)(1,6.5)(2,-0.5)(6.5,-0.5)(8.5,6)(4.5,-0.5);
+PartcipantID:1
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
+1;1;0;0;1.091721;0;48;(8,6.5)(8.5,4.5)(6,-0.5)(7.5,-0.5)(-0.5,6.5)(2,-0.5);
+1;2;1;1;0.6834126;0;64;(8.5,4.5)(3,6.5)(8,2.5)(-0.5,3)(2.5,-0.5)(0,1);
