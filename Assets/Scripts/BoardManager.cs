@@ -11,34 +11,36 @@ using UnityEngine.EventSystems;
 // This Script (a component of Game Manager) Initializes the Borad (i.e. screen).
 public class BoardManager : MonoBehaviour
 {
+    // Resoultion width and Height
+    // CAUTION! Modifying this does not modify the Screen resolution.
+    // items will be displayed inside a 1600x900 box
+    public static int resolutionWidth = 1600;
+    public static int resolutionHeight = 900;
 
-    //Resoultion width and Height
-    //CAUTION! Modifying this does not modify the Screen resolution. This is related to the unit grid on Unity.
-    public static int resolutionWidth = 800;
-    public static int resolutionHeight = 600;
+    // leave some margin for the "TooHeavy" text and centre timer
+    public static int bottommargin = 100;
+    public static int centremargin = 200;
 
-    //Number of Columns and rows of the grid (the possible positions of the items).
-    public static int columns = 16;
-    public static int rows = 12;
-
-    //The method to be used to place items randomly on the grid.
-    //1. Choose random positions from full grid. It might happen that no placement is found and the trial will be skipped.
-    //2. Choose randomly out of 10 positions. A placement is guaranteed
-    public static int randomPlacementType = 1;
+    // Number of Columns and rows of the grid (the possible positions of the items).
+    // 1920 x 1080; 16:9; 100 pixels should be sufficient
+    public static int columns;
+    public static int rows;
 
     //Prefab of the item interface configuration
     public static GameObject KSItemPrefab;
 
     //A canvas where all the board is going to be placed
-    private GameObject canvas;
+    public static GameObject canvas;
 
     //The possible positions of the items;
-    private List<Vector3> gridPositions = new List<Vector3>();
+    public static List<Vector3> gridPositions = new List<Vector3>();
 
     //Weights and value vectors for this trial. CURRENTLY SET UP TO ALLOW ONLY INTEGERS.
     //ws and vs must be of the same length
-    private int[] ws;
-    private int[] vs;
+    public static int[] ws;
+    public static int[] vs;
+
+    public static int nitems;
 
     //If randomization of buttons:
     //1: No/Yes 0: Yes/No
@@ -48,18 +50,10 @@ public class BoardManager : MonoBehaviour
     //0:No / 1:Yes / 2:None
     public static int answer;
 
-    private String question;
+    public static string question;
 
     //Should the key be working?
     public static bool keysON = false;
-
-    //These variables shouldn't be modified. They just state that the area of the value part of the item and the weight part are assumed to be 1.
-    private static float minAreaBill = 1f;
-    private static float minAreaWeight = 1f;
-
-    //The total area of all the items. Separated by the value part and the weighy part. A good initialization for this variables is the number of items plus 1.
-    public static int totalAreaBill = 8;
-    public static int totalAreaWeight = 8;
 
 
     //Structure with the relevant parameters of an item.
@@ -70,15 +64,17 @@ public class BoardManager : MonoBehaviour
     private struct Item
     {
         public GameObject gameItem;
-        public Vector2 coordValue1;
-        public Vector2 coordValue2;
-        public Vector2 coordWeight1;
-        public Vector2 coordWeight2;
         public Vector2 center;
+        public int ItemNumber;
+        public Button ItemButton;
     }
 
     //The items for the scene are stored here.
     private static Item[] items;
+
+
+    // Current Instance number
+    public static int currInstance;
 
 
     // Vars relating to BDM Auction
@@ -105,55 +101,43 @@ public class BoardManager : MonoBehaviour
 
     public static bool auction_finished = false;
 
+    // Relating to sampling task
+    public static int boxsize = 300; //for a square, length = width = 300 in the current task.
+    public static int boxcoord = 250;
+    public static int dotsize = 20; //the dot is stored in a 20*20 box.
+    public static int outsideposofbox = boxcoord + boxsize / 2; //the x position of the left side of the left box is -400, and the right side of the right box is 400.
+    public static int insideposofbox = boxcoord - boxsize / 2; //the x position of the right side of the left box is -100, and 
+    public static int gridlines = boxsize / dotsize; //since the box is a square, the number of rows and columns of the grids are the same. // do we need to define the value of the gridlines = 15?
+    public static GameObject DotPrefab;
 
+    //the possible positions of the items;
+    //these var are arrays, which can be cleared and .Length
+    private static List<Vector2> leftgridpositions = new List<Vector2>();
+    private static List<Vector2> rightgridpositions = new List<Vector2>();
+
+    //the number of dots of left/right boxes.
+    //these are arrays.
+    public static int leftbox = 225;
+    public static int rightbox = 100;
 
     //This Initializes the GridPositions which are the possible places where the items will be placed.
     void InitialiseList()
     {
         gridPositions.Clear();
 
-        if (randomPlacementType == 1)
+        // Generate a list of possible positions, this is shaped like a box with a centre cut out
+        for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
         {
-            //"Completely-Random" Grid
-            for (int x = -1; x < columns + 2; x++)
+            for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
             {
-                for (int y = -1; y < rows + 2; y++)
+                if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
                 {
-                    float xUnit = (float)(resolutionWidth / 100) / columns;
-                    float yUnit = (float)(resolutionHeight / 100) / rows;
-                    gridPositions.Add(new Vector3(x * xUnit, y * yUnit, 0f));
-                }
-            }
-        }
-        else if (randomPlacementType == 2)
-        {
-            //Simple 10 positions grid. 
-            for (int y = 1; y < rows + 1; y = y + 5)
-            {
-                if (y == 6)
-                {
-                    for (int x = 2; x < columns + 1; x = x + 12)
-                    {
-                        float xUnit = (float)(resolutionWidth / 100) / columns;
-                        float yUnit = (float)(resolutionHeight / 100) / rows;
-                        gridPositions.Add(new Vector3(x * xUnit, y * yUnit, 0f));
-                        //Debug.Log ("x" + x + " y" + y);
-                    }
-                }
-                else
-                {
-                    for (int x = 1; x < columns + 1; x = x + 5)
-                    {
-                        float xUnit = (float)(resolutionWidth / 100) / columns;
-                        float yUnit = (float)(resolutionHeight / 100) / rows;
-                        gridPositions.Add(new Vector3(x * xUnit, y * yUnit, 0f));
-                        //Debug.Log ("x" + x + " y" + y);
-                    }
+                    gridPositions.Add(new Vector2(x, y));
                 }
             }
         }
 
-
+        //Debug.Log("Number of possible positions: " + gridPositions.Count);
     }
 
     //Call only for visualizing grid in the Canvas.
@@ -193,16 +177,17 @@ public class BoardManager : MonoBehaviour
     //1. Sets the question string using the instance (from the .txt files)
     //2. The weight and value vectors are uploaded
     //3. The instance prefab is uploaded
-    void setKSInstance()
+    void setKnapsackInstance()
     {
         int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
-        question = "$" + GameManager.ksinstances[randInstance].profit + System.Environment.NewLine + GameManager.ksinstances[randInstance].capacity + "kg?";
+        question = "$" + GameManager.kinstances[randInstance].profit + System.Environment.NewLine + GameManager.kinstances[randInstance].capacity + "kg?";
 
-        ws = GameManager.ksinstances[randInstance].weights;
-        vs = GameManager.ksinstances[randInstance].values;
+        ws = GameManager.kinstances[randInstance].weights;
+        vs = GameManager.kinstances[randInstance].values;
 
         KSItemPrefab = (GameObject)Resources.Load("KSItem3");
 
+        DotPrefab = (GameObject)Resources.Load("whiteDot");
     }
 
     //Shows the question on the screen
@@ -218,19 +203,12 @@ public class BoardManager : MonoBehaviour
     /// </summary>
     /// <returns>The item structure</returns>
     /// The item placing here is temporary; The real placing is done by the placeItem() method.
-    Item generateItem(int itemNumber, Vector3 randomPosition)
+    Item GenerateItem(int itemNumber, Vector3 tempPosition)
     {
-
         //Instantiates the item and places it.
-        GameObject instance = Instantiate(KSItemPrefab, randomPosition, Quaternion.identity) as GameObject;
-
-        canvas = GameObject.Find("Canvas");
+        GameObject instance = Instantiate(KSItemPrefab, tempPosition,
+            Quaternion.identity) as GameObject;
         instance.transform.SetParent(canvas.GetComponent<Transform>(), false);
-
-        //Setting the position in a separate line is importatant in order to set it according to global coordinates.
-        instance.transform.position = randomPosition;
-
-        //instance.GetComponentInChildren<Text>().text = ws[itemNumber]+ "Kg \n $" + vs[itemNumber];
 
         //Gets the subcomponents of the item 
         GameObject bill = instance.transform.Find("Bill").gameObject;
@@ -238,38 +216,47 @@ public class BoardManager : MonoBehaviour
 
         //Sets the Text of the items
         bill.GetComponentInChildren<Text>().text = "$" + vs[itemNumber];
-        weight.GetComponentInChildren<Text>().text = "" + ws[itemNumber] + "kg";
-
-        // Calculates the area of the Value and Weight sections of the item accrding to approach 2 and then Scales the sections so they match the corresponding area.
-        //Area Approach 2 calculation general idea:
-        //The total area is constant. The area is divided among the items propotional to the ratio between the value (weight) and the sum of all the values (weights) of the items. 
-        //Afterwards a constant area is substracted (or added) from all items in order to make the area of the minimum item equal to the minimum area defined, mantianing the total area constant.
-        // Equations: 1. area_i = c + (totalArea-numberOfItems*c)*(value_i/sum(value_i)) 2. min(area_i)=minimumAreaDefined
-        float adjustmentBill = (minAreaBill - totalAreaBill * vs.Min() / vs.Sum()) / (1 - vs.Length * vs.Min() / vs.Sum());
-        float areaItem1 = adjustmentBill + (totalAreaBill - vs.Length * adjustmentBill) * vs[itemNumber] / vs.Sum();
-        float scale1 = Convert.ToSingle(Math.Sqrt(areaItem1) - 1);
-        bill.transform.localScale += new Vector3(scale1, scale1, 0);
-
-        float adjustmentWeight = (minAreaWeight - totalAreaWeight * ws.Min() / ws.Sum()) / (1 - ws.Length * ws.Min() / ws.Sum());
-        float areaItem2 = adjustmentWeight + (totalAreaWeight - ws.Length * adjustmentWeight) * ws[itemNumber] / ws.Sum();
-        float scale2 = Convert.ToSingle(Math.Sqrt(areaItem2) - 1);
-        weight.transform.localScale += new Vector3(scale2, scale2, 0);
-
-        //Using the scaling results it calculates the coordinates (with respect to the center of the item) of the item.
-        float weightH = weight.GetComponent<BoxCollider2D>().size.y * weight.transform.localScale.y;
-        float weightW = weight.GetComponent<BoxCollider2D>().size.x * weight.transform.localScale.x;
-        float valueH = bill.GetComponent<BoxCollider2D>().size.y * bill.transform.localScale.y;
-        float valueW = bill.GetComponent<BoxCollider2D>().size.x * bill.transform.localScale.x;
-
-        Item itemInstance = new Item();
-        itemInstance.gameItem = instance;
-
-        itemInstance.coordValue1 = new Vector2(-valueW / 2, 0);
-        itemInstance.coordValue2 = new Vector2(valueW / 2, valueH);
-        itemInstance.coordWeight1 = new Vector2(-weightW / 2, 0);
-        itemInstance.coordWeight2 = new Vector2(weightW / 2, -weightH);
+        weight.GetComponentInChildren<Text>().text = ws[itemNumber].ToString() + "kg";
 
 
+        // Calculates the area of the Value and Weight sections of the item according to approach 2 
+        // and then Scales the sections so they match the corresponding area.
+        Vector3 curr_billscale = bill.transform.localScale;
+        float billscale = (float)Math.Pow(vs[itemNumber] / vs.Average(), 0.6) * curr_billscale.x - 0.15f;
+
+        if (billscale < 0.7f * curr_billscale.x)
+        {
+            billscale = 0.7f * curr_billscale.x;
+        }
+        else if (billscale > 1.0f * curr_billscale.x)
+        {
+            billscale = 1.0f * curr_billscale.x;
+        }
+
+        bill.transform.localScale = new Vector3(billscale,
+            billscale, billscale);
+
+        Vector3 curr_weightscale = weight.transform.localScale;
+        float weightscale = (float)Math.Pow(ws[itemNumber] / ws.Average(), 0.6) * curr_weightscale.x - 0.15f;
+
+        if (weightscale < 0.7f * curr_weightscale.x)
+        {
+            weightscale = 0.7f * curr_weightscale.x;
+        }
+        else if (weightscale > 1.0f * curr_weightscale.x)
+        {
+            weightscale = 1.0f * curr_weightscale.x;
+        }
+
+        weight.transform.localScale = new Vector3(weightscale,
+            weightscale, weightscale);
+
+        Item itemInstance = new Item
+        {
+            gameItem = instance,
+        };
+
+        itemInstance.ItemNumber = itemNumber;
 
         return (itemInstance);
 
@@ -289,7 +276,7 @@ public class BoardManager : MonoBehaviour
     Vector3 RandomPosition()
     {
         int randomIndex = Random.Range(0, gridPositions.Count);
-        Vector3 randomPosition = gridPositions[randomIndex];
+        Vector2 randomPosition = gridPositions[randomIndex];
         gridPositions.RemoveAt(randomIndex);
         return randomPosition;
     }
@@ -300,31 +287,32 @@ public class BoardManager : MonoBehaviour
     {
         int objectCount = ws.Length;
         items = new Item[objectCount];
+
         for (int i = 0; i < objectCount; i++)
         {
-            int objectPositioned = 0;
-            Item itemToLocate = generateItem(i, new Vector3(-1000, -1000, -1000));//66: Change to different Layer?
-            while (objectPositioned == 0)
-            {
-                if (gridPositions.Count > 0)
-                {
-                    Vector3 randomPosition = RandomPosition();
+            bool objectPositioned = false;
 
-                    if (!objectOverlapsQ(randomPosition, itemToLocate))
-                    {
-                        placeItem(itemToLocate, randomPosition);
-                        itemToLocate.center = new Vector2(randomPosition.x, randomPosition.y);
-                        items[i] = itemToLocate;
-                        objectPositioned = 1;
-                    }
-                }
-                else
-                {
-                    //Debug.Log ("Not enough space to place all items");
-                    return false;
-                }
+            Item itemToLocate = GenerateItem(i, new Vector2(-2000, -2000));
+            //Debug.Log("Local: " + itemToLocate.gameItem.transform.localPosition);
+            //Debug.Log("Global: " + itemToLocate.gameItem.transform.position);
+            while (!objectPositioned && gridPositions.Count > 0)
+            {
+                Vector2 randomPosition = RandomPosition();
+                //Instantiates the item and places it.
+                itemToLocate.gameItem.transform.localPosition = randomPosition;
+                itemToLocate.center = new Vector2(itemToLocate.gameItem.transform.localPosition.x,
+                    itemToLocate.gameItem.transform.localPosition.y);
+
+                items[i] = itemToLocate;
+                objectPositioned = true;
             }
 
+            if (!objectPositioned)
+            {
+                Debug.Log("Not enough space to place all items... " +
+                    "ran out of randomPositions");
+                return false;
+            }
         }
         return true;
     }
@@ -334,43 +322,69 @@ public class BoardManager : MonoBehaviour
     public void SetupScene(string sceneToSetup)
     {
 
-        if (sceneToSetup == "Trial")
+        if (sceneToSetup == "TrialKP")
         {
-            //InitialiseList();
-            setKSInstance();
+            canvas = GameObject.Find("Canvas");
+
+            setKnapsackInstance();
             setQuestion();
             keysON = true;
-
             //If the bool returned by LayoutObjectAtRandom() is false, then retry again:
             //Destroy all items. Initialize list again and try to place them once more.
-            int nt = 200;
+            int nt = 0;
             bool itemsPlaced = false;
-            while (nt >= 1 && !itemsPlaced)
+            while (nt < 10 && !itemsPlaced)
             {
-
                 GameObject[] items1 = GameObject.FindGameObjectsWithTag("Item");
+
                 foreach (GameObject item in items1)
                 {
                     Destroy(item);
                 }
 
                 InitialiseList();
-                //seeGrid();
+
                 itemsPlaced = LayoutObjectAtRandom();
-                nt--;
-                //Debug.Log(nt);
+                nt++;
             }
-            if (itemsPlaced == false)
+        }
+        // Setting up sampling task
+        else if (sceneToSetup == "TrialSampling")
+        {
+            keysON = false;
+
+            // init answer as none
+            answer = 2;
+
+            canvas = GameObject.Find("Canvas");
+
+            //InitialiseList();
+            int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
+
+            Debug.Log(randInstance);
+            DotPrefab = (GameObject)Resources.Load("whiteDot");
+
+            //If the bool returned by LayoutObjectAtRandom() is false, then retry again:
+            //Destroy all items. Initialize list again and try to place them once more.
+
+            GameObject[] items1 = GameObject.FindGameObjectsWithTag("Item");
+            foreach (GameObject item in items1)
             {
-                GameManager.errorInScene("Not enough space to place all items");
+                Destroy(item);
             }
+
+            leftbox = GameManager.sinstances[randInstance].LeftBox;
+            rightbox = GameManager.sinstances[randInstance].RightBox;
+
+            InitialiseListSamplingTask();
+
+            LayoutDotAtRandom();
 
         }
         else if (sceneToSetup == "TrialAnswer")
         {
-
             answer = 2;
-            setKSInstance();
+            setKnapsackInstance();
             RandomizeButtons();
             keysON = true;
 
@@ -411,15 +425,23 @@ public class BoardManager : MonoBehaviour
         {
             keysON = true;
             selected_button = -1;
-            button_list = new Button[] {GameObject.Find("ButtonZero").GetComponent<Button>(), GameObject.Find("ButtonOne").GetComponent<Button>(),
-                GameObject.Find("ButtonTwo").GetComponent<Button>(), GameObject.Find("ButtonThree").GetComponent<Button>(),
-                GameObject.Find("ButtonFour").GetComponent<Button>(), GameObject.Find("ButtonFive").GetComponent<Button>()};
-                
-            int init_choice = Random.Range(0, 5);
+
+            Button ButtonZero = GameObject.Find("ButtonZero").GetComponent<Button>();
+            Button ButtonOne = GameObject.Find("ButtonOne").GetComponent<Button>();
+            Button ButtonTwo = GameObject.Find("ButtonTwo").GetComponent<Button>();
+            Button ButtonThree = GameObject.Find("ButtonThree").GetComponent<Button>();
+            Button ButtonFour = GameObject.Find("ButtonFour").GetComponent<Button>();
+            Button ButtonFive = GameObject.Find("ButtonFive").GetComponent<Button>();
+
+            button_list = new Button[] { ButtonZero, ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive };
+
+            int init_choice = Random.Range(0, 6);
             Debug.Log(init_choice + "    " + button_list[init_choice]);
 
             selected_button = init_choice;
+
             button_list[init_choice].Select();
+            button_list[init_choice].OnSelect(null);
 
             foreach (var btn in button_list)
             {
@@ -429,28 +451,113 @@ public class BoardManager : MonoBehaviour
     }
 
 
+    //this initializes the gridpositions which are the possible placees wheeree the dots will be placed.
+    //the size of the black box containing white dots is 300*300;
+    //the size of the frame containg white dot is 20*20;
+    //Q: does the number of possible positions indicated here fixed? e.g. 15*15 = 225 all possible places to place dots?
+    void InitialiseListSamplingTask()
+    {
+        leftgridpositions.Clear();
+        for (int x = -outsideposofbox; x < -insideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
+        {
+            for (int y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
+            {
+                leftgridpositions.Add(new Vector2(x + 10, y + 10));
+            }
+        }
+        rightgridpositions.Clear();
+        for (int x = insideposofbox; x < outsideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
+        {
+            for (int y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
+            {
+                rightgridpositions.Add(new Vector2(x + 10, y + 10));
+            }
+        }
+
+        //Debug.Log("Number of possible Left positions: " + leftgridpositions.Count);
+        //Debug.Log("Number of possible positions: " + rightgridpositions.Count);
+    }
+
+
+    // returns a random position from the grid and reemoves the item from the list.
+    // do we need to use for loop to generate multiple random index and places for a trial for left/right boxes
+    public static Vector2 dotRandomPosition(string LorR)
+    {
+        if (LorR == "Left")
+        {
+            int leftdotRandomIndex = UnityEngine.Random.Range(0, leftgridpositions.Count); //issue with this Random.
+
+            Vector2 leftDotRandomPosition = leftgridpositions[leftdotRandomIndex];
+
+            leftgridpositions.RemoveAt(leftdotRandomIndex);
+
+            return leftDotRandomPosition;
+        }
+        else
+        {
+            int rightdotRandomIndex = UnityEngine.Random.Range(0, rightgridpositions.Count);
+
+            Vector2 rightDotRandomPosition = rightgridpositions[rightdotRandomIndex];
+
+            rightgridpositions.RemoveAt(rightdotRandomIndex);
+
+            return rightDotRandomPosition; //how to return multiple results of a function in C#?
+        }
+    }
+
+    // Places all the objects from the instance (ws,vs) on the canvas. 
+    // Returns TRUE if all items where positioned, FALSE otherwise.
+    public static bool LayoutDotAtRandom()
+    {
+        for (int i = 0; i < leftbox; i++)
+        {
+            GameObject dotToLocate = GenerateDot(i, new Vector2(-2000, -2000));
+
+            Vector2 dotPosition = dotRandomPosition("Left");
+
+            //Instantiates the item and places it.
+            dotToLocate.transform.localPosition = dotPosition;
+        }
+        for (int i = 0; i < rightbox; i++)
+        {
+            GameObject dotToLocate = GenerateDot(i, new Vector2(-2000, -2000));
+
+            Vector2 dotPosition = dotRandomPosition("Right");
+
+            //Instantiates the item and places it.
+            dotToLocate.transform.localPosition = dotPosition;
+        }
+
+        return true;
+    }
+
+
+    // Instantiates an Item and places it on the position from the input
+    // The item placing here is temporary; The real placing is done by the LayoutObjectAtRandom() method.
+    public static GameObject GenerateDot(int itemNumber, Vector2 tempPosition)
+    {
+        //Instantiates the item and places it.
+        GameObject instance = Instantiate(DotPrefab, tempPosition,
+            Quaternion.identity) as GameObject;
+
+        instance.transform.SetParent(canvas.GetComponent<Transform>(), false);
+
+        //Item itemInstance = new Item
+        //{
+        //    gameItem = instance,
+        //};
+
+        //itemInstance.ItemNumber = itemNumber;
+
+
+        return (instance);
+    }
 
     public static void ButtonClicked()
     {
         //Debug.Log("Button Clicked " + EventSystem.current.currentSelectedGameObject.name);// GetComponent<Text>().text);
         //GameManager.SetTimeStamp();
         //GameManager.ChangeToNextScene(itemClicks, false);
-    }
-
-    //Checks if positioning an item in the new position generates an overlap.
-    //Returns: TRUE if there is an overlap. FALSE Otherwise.
-    bool objectOverlapsQ(Vector3 pos, Item item)
-    {
-        Vector2 posxy = new Vector3(pos.x, pos.y);
-        bool overlapValue = Physics2D.OverlapArea(item.coordValue1 + posxy, item.coordValue2 + posxy);
-        bool overlapWeight = Physics2D.OverlapArea(item.coordWeight1 + posxy, item.coordWeight2 + posxy);
-
-        //Debug.Log ("Item");
-        //Debug.Log(item.coordValue1 + posxy);
-        //Debug.Log(item.coordValue2+posxy);
-        //1234
-        return overlapValue || overlapWeight;
-        //return false;
     }
 
     //Updates the timer rectangle size accoriding to the remaining time.
@@ -468,12 +575,71 @@ public class BoardManager : MonoBehaviour
     private void setKeyInput()
     {
 
-        if (GameManager.escena == "Trial")
+        if (GameManager.escena == "TrialKP")
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 GameManager.saveTimeStamp("ParticipantSkip");
                 GameManager.changeToNextScene(0, 0, 1);
+            }
+        }
+        if (GameManager.escena == "TrialSampling")
+        {
+            //1: No/Yes 0: Yes/No
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                //Left
+                keysON = false;
+
+                answer = new List<int>() { 0, 1 }[randomYes];
+                
+                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+
+                if (correct == 1 && GameManager.trial <= 5)
+                {
+                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+
+                    GameManager.tiempo = 3f;
+                }
+                else if (correct != 1 && GameManager.trial <= 5)
+                {
+                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+
+                    GameManager.tiempo = 3f;
+                }
+                else
+                {
+                    GameManager.changeToNextScene(0, 0, 1);
+
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                //Right
+                keysON = false;
+
+                answer = new List<int>() { 1, 0 }[randomYes];
+
+                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+
+                if (correct == 1 && GameManager.trial <= 5)
+                {
+                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+
+                    GameManager.tiempo = 3f;
+                }
+                else if (correct != 1 && GameManager.trial <= 5)
+                {
+                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+
+                    GameManager.tiempo = 3f;
+                }
+                else
+                {
+                    GameManager.changeToNextScene(0, 0, 1);
+
+                }
             }
         }
         else if (GameManager.escena == "TrialAnswer")
@@ -495,7 +661,7 @@ public class BoardManager : MonoBehaviour
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
 
-                int correct = (GameManager.ksinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+                int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
                 if (correct == 1 && GameManager.trial <= 5)
                 {
@@ -526,7 +692,7 @@ public class BoardManager : MonoBehaviour
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
 
-                int correct = (GameManager.ksinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+                int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
                 if (correct == 1 && GameManager.trial <= 5)
                 {
@@ -610,7 +776,10 @@ public class BoardManager : MonoBehaviour
                     auctionResult.text = "Answer Recorded; You lost the auction";
                 }
 
-                auction_finished = true;
+                //auction_finished = true;
+
+                GameManager.tiempo = 3.0f;
+                GameManager.totalTime = GameManager.tiempo;
             }
         }
         else if (GameManager.escena == "LikertScale")
@@ -618,6 +787,8 @@ public class BoardManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 GameObject.Find("RecordText").GetComponent<Text>().text = "Answer Recorded";
+                GameManager.tiempo = 3.0f;
+                GameManager.totalTime = GameManager.tiempo;
             }
         }
     }
@@ -635,34 +806,21 @@ public class BoardManager : MonoBehaviour
         GameObject start = GameObject.Find("Start") as GameObject;
         start.SetActive(false);
 
-        Debug.Log("Rand button");
-        GameObject rand = GameObject.Find("RandomisationID") as GameObject;
-        rand.SetActive(false);
-
         //Participant Input
         InputField pID = GameObject.Find("ParticipantID").GetComponent<InputField>();
 
         InputField.SubmitEvent se = new InputField.SubmitEvent();
         //se.AddListener(submitPID(start));
-        se.AddListener((value) => submitPID(value, start, rand));
+        se.AddListener((value) => submitPID(value, start));
         pID.onEndEdit = se;
-
-
-        //Randomisation Input
-        InputField rID = rand.GetComponent<InputField>();
-
-        InputField.SubmitEvent se2 = new InputField.SubmitEvent();
-        se2.AddListener((value) => submitRandID(value, start));
-        rID.onEndEdit = se2;
-
-
     }
 
-    private void submitPID(string pIDs, GameObject start, GameObject rand)
+    private void submitPID(string pIDs, GameObject start)
     {
         GameObject pID = GameObject.Find("ParticipantID");
         GameObject pIDT = GameObject.Find("ParticipantIDText");
         pID.SetActive(false);
+        pIDT.SetActive(false);
 
         Text inputID = pIDT.GetComponent<Text>();
         inputID.text = "Randomisation Number";
@@ -670,22 +828,12 @@ public class BoardManager : MonoBehaviour
         //Set Participant ID
         GameManager.participantID = pIDs;
 
-        //Activate Randomisation Listener
-        rand.SetActive(true);
-
-    }
-
-    private void submitRandID(string rIDs, GameObject start)
-    {
-        //Debug.Log (pIDs);
-
-        GameObject rID = GameObject.Find("RandomisationID");
-        GameObject pIDT = GameObject.Find("ParticipantIDText");
-        rID.SetActive(false);
-        pIDT.SetActive(false);
-
         //Set Participant ID
-        GameManager.randomisationID = rIDs;
+        GameManager.randomisationID = pIDs.Substring(1);
+        //Set Participant ID
+        GameManager.GAMETYPE = pIDs.Substring(0,1).ToLower();
+
+        Debug.Log(GameManager.GAMETYPE);
 
         //Activate Start Button and listener
         start.SetActive(true);

@@ -1,0 +1,3 @@
+LeftBox:20
+RightBox:25
+solution:1

@@ -1,0 +1,20 @@
+To do list: 
+
+1.	The order of the sampling task and the KS decision making task will be randomized in the inpute .txt file. 
+2.	The dots in the sampling task will be displayed for 300ms (0.3s) and then disappear. And then the participants will have unlimited time to choose the left/right black box with left and right arrow keys, then go to next scene right after they have made the decision.
+3.	For the sampling task, it will also have 8 blocks, with four of them having feedback (Right/wrong) after each trial, and four without feedback info. The order of these 8 blocks will be randomized. 
+4.	The number of dots displayed in the left/right box is also predetermined in the .txt file.  
+5.	Fix the randomization of the initial button in the Likert Scale. 
+6.	Can you plz check the fillAmount of the bars in the auction. 
+
+
+7. Fix xiaping KP auction computer bid, 
+Likert select always 0, 
+randomise order of Bid and likert, 
+show for 300ms, select left or right, 
+unlimited time, change to 2 random scene exclusive. 
+add payment, 1920x 1080
+
+
+
+Many thanks Anthony!

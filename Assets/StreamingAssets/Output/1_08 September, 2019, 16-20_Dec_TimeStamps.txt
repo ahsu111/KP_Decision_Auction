@@ -1,9 +1,0 @@
-PartcipantID:1
-InitialTimeStamp:16-20-26-663
-block;trial;eventType;elapsedTime
-1;1;Trial;63
-1;1;ParticipantSkip;629
-1;1;TrialAnswer;657
-1;1;ParticipantAnswer;1672
-1;1;InterTrialRest;1698
-1;1;BDM_Auction;1836

@@ -1,4 +1,0 @@
-PartcipantID:12
-InitialTimeStamp:09-01-25-759
-block;trial;eventType;elapsedTime
-1;1;Trial;62

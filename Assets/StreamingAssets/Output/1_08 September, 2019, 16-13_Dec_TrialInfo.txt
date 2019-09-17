@@ -1,3 +1,0 @@
-PartcipantID:1
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
-1;1;1;1;0.4907131;0;48;(0.5,0)(8,4.5)(-0.5,2.5)(0.5,6.5)(8,2.5)(3,6.5);

@@ -1,9 +1,0 @@
-PartcipantID:1
-InitialTimeStamp:16-10-42-532
-block;trial;eventType;elapsedTime
-1;1;Trial;65
-1;1;ParticipantSkip;623
-1;1;TrialAnswer;651
-1;1;ParticipantAnswer;1658
-1;1;InterTrialRest;1685
-1;2;Trial;1862
