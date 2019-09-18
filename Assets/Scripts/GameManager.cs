@@ -705,10 +705,10 @@ public class GameManager : MonoBehaviour
         if (escena == "SetUp")
         {
             loadParameters();
-            saveHeaders();
             if (GAMETYPE == "k")
             {
                 loadKPInstance();
+                saveHeaders();
                 SceneManager.LoadScene("TrialKP");
             }
             else if (GAMETYPE == "s")

@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{15131A96-460F-8B41-27C8-E4424D84EB50}</ProjectGuid>
+    <ProjectGuid>{CB844882-FB1B-F908-9FA8-A11078383B23}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -100,7 +100,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\StreamingAssets\Python\i51.txt" />
     <None Include="Assets\StreamingAssets\Python\s79.txt" />
-    <None Include="Assets\StreamingAssets\Output\s20_17 September, 2019, 21-55_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s10.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S28_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K39_param2.txt" />
@@ -110,11 +109,9 @@
     <None Include="Assets\StreamingAssets\Python\s12.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s44.txt" />
     <None Include="Assets\StreamingAssets\Python\i2.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-25_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K14_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s69.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s17.txt" />
-    <None Include="Assets\StreamingAssets\Output\S14_17 September, 2019, 20-23_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S45_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s46.txt" />
     <None Include="Assets\StreamingAssets\Python\s58.txt" />
@@ -123,23 +120,18 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k19.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s11.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S13_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s50_17 September, 2019, 22-28_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S49_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s74.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S11_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S6_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-09_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k66.txt" />
     <None Include="Assets\StreamingAssets\Python\s43.txt" />
-    <None Include="Assets\StreamingAssets\Output\S13_17 September, 2019, 20-16_Dec_TrialInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\S26_17 September, 2019, 20-15_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S42_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s15.txt" />
     <None Include="Assets\StreamingAssets\Python\s66.txt" />
     <None Include="Assets\StreamingAssets\Python\s14.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K43_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s71.txt" />
-    <None Include="Assets\StreamingAssets\Output\s20_17 September, 2019, 21-55_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K23_param2.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
@@ -160,19 +152,14 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\s40.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S29_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i13.txt" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 20-59_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s30_17 September, 2019, 22-35_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K38_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-13_Dec_TimeStamps.txt" />
+    <None Include="Assets\StreamingAssets\Output\k1_17 September, 2019, 23-07_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k31.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k15.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S21_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-13_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s35.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k5_17 September, 2019, 20-45_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k74.txt" />
-    <None Include="Assets\StreamingAssets\Output\s12_17 September, 2019, 22-14_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i75.txt" />
     <None Include="Assets\StreamingAssets\Python\s33.txt" />
     <None Include="Assets\StreamingAssets\Python\s40.txt" />
@@ -181,40 +168,32 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\S4_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i11.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k59.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 20-47_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\param.txt" />
     <None Include="Assets\StreamingAssets\Python\i5.txt" />
-    <None Include="Assets\StreamingAssets\Output\s13_17 September, 2019, 22-22_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k37.txt" />
     <None Include="Assets\StreamingAssets\Python\i24.txt" />
     <None Include="Assets\StreamingAssets\Python\i76.txt" />
     <None Include="Assets\StreamingAssets\Python\i23.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k33.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-57_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K15_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k6.txt" />
     <None Include="Assets\StreamingAssets\Python\i50.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k52.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 22-24_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\k15_17 September, 2019, 20-41_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S38_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S16_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k72.txt" />
+    <None Include="Assets\StreamingAssets\Output\k1_17 September, 2019, 23-07_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k2.txt" />
     <None Include="Assets\StreamingAssets\Python\i15.txt" />
     <None Include="Assets\StreamingAssets\Python\s47.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K46_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 20-51_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i22.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-09_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k3.txt" />
     <None Include="Assets\StreamingAssets\Python\s49.txt" />
+    <None Include="Assets\StreamingAssets\Output\k10_18 September, 2019, 18-33_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i59.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-57_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s22.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S33_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-13_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 21-20_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S23_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K18_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k41.txt" />
@@ -224,7 +203,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K6_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S22_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k9.txt" />
-    <None Include="Assets\StreamingAssets\Output\s11_17 September, 2019, 20-21_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K50_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s7.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s21.txt" />
@@ -237,7 +215,7 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\s8.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s20.txt" />
     <None Include="Assets\StreamingAssets\Python\i29.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-24_Dec_TrialInfo.txt" />
+    <None Include="Assets\StreamingAssets\Output\k10_18 September, 2019, 18-33_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s31.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s25.txt" />
     <None Include="Assets\StreamingAssets\Python\s23.txt" />
@@ -256,40 +234,31 @@
     <None Include="Assets\StreamingAssets\Python\i9.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s56.txt" />
     <None Include="Assets\StreamingAssets\Python\s10.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 22-44_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S19_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i18.txt" />
     <None Include="Assets\StreamingAssets\Python\i20.txt" />
     <None Include="Assets\StreamingAssets\Output\TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i48.txt" />
     <None Include="Assets\StreamingAssets\Python\s60.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 22-26_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k57.txt" />
     <None Include="Assets\StreamingAssets\Python\i39.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s16.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k45.txt" />
-    <None Include="Assets\StreamingAssets\Output\K13_17 September, 2019, 20-36_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s28.txt" />
     <None Include="Assets\StreamingAssets\Python\i31.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-49_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k44.txt" />
-    <None Include="Assets\StreamingAssets\Output\k15_17 September, 2019, 20-41_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k29.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-22_Dec_TrialInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s18_17 September, 2019, 21-20_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s51.txt" />
     <None Include="Assets\StreamingAssets\Python\s25.txt" />
     <None Include="Assets\StreamingAssets\Python\s48.txt" />
-    <None Include="Assets\StreamingAssets\Output\s40_17 September, 2019, 20-47_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s36.txt" />
     <None Include="Assets\StreamingAssets\Python\s36.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s52.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S5_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s21.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s18.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 21-48_Dec_InstancesInfo.txt" />
+    <None Include="Assets\StreamingAssets\Output\k1_17 September, 2019, 23-07_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s73.txt" />
-    <None Include="Assets\StreamingAssets\Output\S13_17 September, 2019, 20-16_Dec_InstancesInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S10_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S43_param2.txt" />
@@ -297,26 +266,20 @@
     <None Include="Assets\StreamingAssets\Python\s29.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k22.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s50.txt" />
-    <None Include="Assets\StreamingAssets\Output\s1_17 September, 2019, 22-06_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K34_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s62.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 21-58_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K11_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S35_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s6.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S1_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K19_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s44_17 September, 2019, 20-55_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K37_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i3.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-13_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s17.txt" />
     <None Include="Assets\StreamingAssets\Python\s1.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k65.txt" />
     <None Include="Assets\StreamingAssets\Python\i33.txt" />
-    <None Include="Assets\StreamingAssets\Output\k15_17 September, 2019, 20-41_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\s65.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 22-23_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K4_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s79.txt" />
@@ -333,7 +296,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k73.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k17.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k35.txt" />
-    <None Include="Assets\StreamingAssets\Output\K22_17 September, 2019, 20-43_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k60.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K41_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K13_param2.txt" />
@@ -341,16 +303,13 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K10_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s76.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s48.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-39_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i27.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K24_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s43.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s35.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k71.txt" />
-    <None Include="Assets\StreamingAssets\Output\s11_17 September, 2019, 20-21_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s19.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s72.txt" />
-    <None Include="Assets\StreamingAssets\Output\K50_17 September, 2019, 20-39_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i7.txt" />
     <None Include="Assets\StreamingAssets\Python\i19.txt" />
     <None Include="Assets\StreamingAssets\Python\i66.txt" />
@@ -358,14 +317,12 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k16.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s60.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S18_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-49_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i69.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k4.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k1.txt" />
     <None Include="Assets\StreamingAssets\Python\s7.txt" />
     <None Include="Assets\StreamingAssets\Python\s22.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s33.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 22-35_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i65.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S17_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K5_param2.txt" />
@@ -375,11 +332,7 @@
     <None Include="Assets\StreamingAssets\Python\s8.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K31_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k62.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 21-48_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S15_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k5_17 September, 2019, 20-45_Dec_TrialInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 20-47_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-57_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i80.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k54.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S46_param2.txt" />
@@ -388,11 +341,8 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k38.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S25_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-33_Dec_TrialInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s14_17 September, 2019, 22-13_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i30.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-13_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K42_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S39_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i35.txt" />
@@ -405,12 +355,9 @@
     <None Include="Assets\StreamingAssets\Python\s32.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k18.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k24.txt" />
-    <None Include="Assets\StreamingAssets\Output\k5_17 September, 2019, 20-45_Dec_InstancesInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 20-59_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s1.txt" />
     <None Include="Assets\StreamingAssets\Python\s11.txt" />
-    <None Include="Assets\StreamingAssets\Output\S14_17 September, 2019, 20-23_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s34.txt" />
     <None Include="Assets\StreamingAssets\Python\s53.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K28_param2.txt" />
@@ -418,58 +365,43 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K8_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S20_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s18.txt" />
-    <None Include="Assets\StreamingAssets\Output\s13_17 September, 2019, 22-21_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i64.txt" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 20-59_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\s24.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S30_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-22_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K33_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s61.txt" />
-    <None Include="Assets\StreamingAssets\Output\K50_17 September, 2019, 20-39_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i43.txt" />
     <None Include="Assets\StreamingAssets\Python\s4.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s74.txt" />
-    <None Include="Assets\StreamingAssets\Output\K50_17 September, 2019, 20-39_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s39.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s42.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S31_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s20_17 September, 2019, 21-55_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s63.txt" />
     <None Include="Assets\StreamingAssets\Python\s16.txt" />
     <None Include="Assets\StreamingAssets\Python\s27.txt" />
-    <None Include="Assets\StreamingAssets\Output\s45_17 September, 2019, 22-41_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k23.txt" />
     <None Include="Assets\StreamingAssets\Python\i21.txt" />
     <None Include="Assets\StreamingAssets\Python\s38.txt" />
-    <None Include="Assets\StreamingAssets\Output\s5_17 September, 2019, 21-55_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s53.txt" />
     <None Include="Assets\StreamingAssets\Python\i54.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 21-49_Dec_InstancesInfo.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
-    <None Include="Assets\StreamingAssets\Output\s14_17 September, 2019, 22-38_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i58.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k43.txt" />
     <None Include="Assets\StreamingAssets\Python\s69.txt" />
-    <None Include="Assets\StreamingAssets\Output\S26_17 September, 2019, 20-15_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s9.txt" />
     <None Include="Assets\StreamingAssets\Python\i57.txt" />
-    <None Include="Assets\StreamingAssets\Output\s5_17 September, 2019, 21-55_Dec_TimeStamps.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\StreamingAssets\Python\i6.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k12.txt" />
-    <None Include="Assets\StreamingAssets\Output\s12_17 September, 2019, 22-27_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k79.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s64.txt" />
     <None Include="Assets\StreamingAssets\Python\i62.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s57.txt" />
     <None Include="Assets\StreamingAssets\Python\i40.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k8.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-24_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s38.txt" />
     <None Include="Assets\StreamingAssets\Python\i55.txt" />
-    <None Include="Assets\StreamingAssets\Output\s25_17 September, 2019, 20-58_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s5.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s13.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K45_param2.txt" />
@@ -478,7 +410,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K26_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i73.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k69.txt" />
-    <None Include="Assets\StreamingAssets\Output\K22_17 September, 2019, 20-43_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k32.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k75.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k40.txt" />
@@ -490,94 +421,72 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\S14_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k49.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k30.txt" />
+    <None Include="Assets\StreamingAssets\Output\k8_17 September, 2019, 23-08_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s39.txt" />
     <None Include="Assets\StreamingAssets\Python\i14.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-22_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s29.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s30.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k13.txt" />
     <None Include="Assets\StreamingAssets\Python\s37.txt" />
-    <None Include="Assets\StreamingAssets\Output\K11_17 September, 2019, 20-09_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k42.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s67.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-13_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k80.txt" />
     <None Include="Assets\StreamingAssets\Python\i28.txt" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k28.txt" />
-    <None Include="Assets\StreamingAssets\Output\s18_17 September, 2019, 21-20_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s12.txt" />
     <None Include="Assets\StreamingAssets\Python\i37.txt" />
     <None Include="Assets\StreamingAssets\Python\s51.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k20.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k77.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-25_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k76.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s19.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k47.txt" />
     <None Include="Assets\StreamingAssets\Python\i36.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\StreamingAssets\Output\s25_17 September, 2019, 20-58_Dec_TrialInfo.txt" />
+    <None Include="Assets\StreamingAssets\Output\k10_18 September, 2019, 18-33_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K48_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S9_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-33_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\s55.txt" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 21-20_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K17_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K27_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K12_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s12_17 September, 2019, 22-30_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s55.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k25.txt" />
     <None Include="Assets\StreamingAssets\Python\i34.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S24_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\S14_17 September, 2019, 20-23_Dec_InstancesInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\StreamingAssets\Output\s18_17 September, 2019, 21-20_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S32_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k58.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s66.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K7_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s14.txt" />
     <None Include="Assets\StreamingAssets\Python\s26.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-09_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k34.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k21.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-24_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K3_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s25_17 September, 2019, 20-58_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s13.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S3_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i32.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K25_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s11_17 September, 2019, 20-21_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s15.txt" />
-    <None Include="Assets\StreamingAssets\Output\S26_17 September, 2019, 20-15_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s54.txt" />
     <None Include="Assets\StreamingAssets\Python\s78.txt" />
     <None Include="Assets\StreamingAssets\Python\i8.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K36_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s59.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k48.txt" />
-    <None Include="Assets\StreamingAssets\Output\s40_17 September, 2019, 20-47_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\s14_17 September, 2019, 22-24_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i79.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s32.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 21-49_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K9_param2.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S44_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i26.txt" />
-    <None Include="Assets\StreamingAssets\Output\k9_17 September, 2019, 21-20_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 20-49_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s45.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-33_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s75.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k64.txt" />
-    <None Include="Assets\StreamingAssets\Output\S13_17 September, 2019, 20-16_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\s25_17 September, 2019, 22-06_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S8_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i63.txt" />
     <None Include="Assets\StreamingAssets\Python\s5.txt" />
@@ -586,18 +495,13 @@
     <None Include="Assets\StreamingAssets\Python\s71.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s80.txt" />
     <None Include="Assets\StreamingAssets\Python\s80.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 20-51_Dec_TrialInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 21-48_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s63.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S12_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\s10_17 September, 2019, 22-25_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s77.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K44_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K13_17 September, 2019, 20-36_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i78.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s41.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-09_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\i47.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K47_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i44.txt" />
@@ -608,15 +512,8 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\s34.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s4.txt" />
     <None Include="Assets\StreamingAssets\Python\s57.txt" />
-    <None Include="Assets\StreamingAssets\Output\s40_17 September, 2019, 20-47_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\S11_17 September, 2019, 20-09_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s5_17 September, 2019, 22-19_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 20-47_Dec_TrialInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\StreamingAssets\Python\s77.txt" />
-    <None Include="Assets\StreamingAssets\Output\s44_17 September, 2019, 20-55_Dec_TimeStamps.txt" />
-    <None Include="Assets\StreamingAssets\Output\K13_17 September, 2019, 20-36_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-39_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\i45.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K16_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s46.txt" />
@@ -632,61 +529,54 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k68.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S48_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k46.txt" />
-    <None Include="Assets\StreamingAssets\Output\K22_17 September, 2019, 20-43_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s30.txt" />
-    <None Include="Assets\StreamingAssets\Output\s16_17 September, 2019, 21-49_Dec_TimeStamps.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\StreamingAssets\Python\s50.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k51.txt" />
-    <None Include="Assets\StreamingAssets\Output\s15_17 September, 2019, 22-40_Dec_TimeStamps.txt" />
+    <None Include="Assets\StreamingAssets\Output\k8_17 September, 2019, 23-08_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k39.txt" />
-    <None Include="Assets\StreamingAssets\Output\s23_17 September, 2019, 22-19_Dec_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K20_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S37_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S7_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\K27_17 September, 2019, 20-39_Dec_InstancesInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K40_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\i52.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K1_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k10.txt" />
-    <None Include="Assets\StreamingAssets\Output\s5_17 September, 2019, 21-55_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s9.txt" />
-    <None Include="Assets\StreamingAssets\Output\S15_17 September, 2019, 20-25_Dec_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s31.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s3.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k7.txt" />
-    <None Include="Assets\StreamingAssets\Output\s44_17 September, 2019, 20-55_Dec_InstancesInfo.txt" />
-    <None Include="Assets\StreamingAssets\Output\s19_17 September, 2019, 20-51_Dec_TimeStamps.txt" />
+    <None Include="Assets\StreamingAssets\Output\k8_17 September, 2019, 23-08_Dec_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s41.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S26_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s61.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/antho/Downloads/Auction-master/Auction-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/antho/OneDrive/Desktop/KP_Auction/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
