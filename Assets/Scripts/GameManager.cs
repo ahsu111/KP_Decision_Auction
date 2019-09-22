@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     //InterBlock rest time
     public static float timeRest2 = 10;
-    
+
     //Time given for each trial (The total time the items are shown -With and without the question-)
     public static float timeQuestion = 10;
 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     public static bool dotshown = false;
 
     //Time to display sampling dots
-    public static float timedots = 1f;
+    public static float timedots = 0.3f;
 
     //Total number of trials in each block
     private static int numberOfTrials = 30;
@@ -252,6 +252,15 @@ public class GameManager : MonoBehaviour
         else if (escena == "InterTrialRest")
         {
             showTimer = false;
+
+            if (GAMETYPE == "s")
+            {
+                GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = Color.white;
+
+                GameObject.Find("Text").GetComponent<Text>().color = Color.black;
+
+            }
+
             tiempo = Random.Range(timeRest1min, timeRest1max);
             totalTime = tiempo;
         }
@@ -271,7 +280,7 @@ public class GameManager : MonoBehaviour
             boardScript.SetupScene(escena);
 
             // NEED TO CHANGE THE TIME HERE
-            tiempo = 10;
+            tiempo = 20;
             totalTime = tiempo;
             showTimer = true;
 
@@ -281,7 +290,7 @@ public class GameManager : MonoBehaviour
             boardScript.SetupScene(escena);
 
             // NEED TO CHANGE THE TIME HERE
-            tiempo = 10;
+            tiempo = 20;
             totalTime = tiempo;
             showTimer = true;
 
@@ -945,7 +954,7 @@ public class GameManager : MonoBehaviour
     void startTimer()
     {
         tiempo -= Time.deltaTime;
-        Debug.Log (tiempo + "       Dots shown: " + dotshown + "       Keys on: " + BoardManager.keysON);
+        Debug.Log(tiempo + "       Dots shown: " + dotshown + "       Keys on: " + BoardManager.keysON);
         if (showTimer)
         {
             boardScript.updateTimer();

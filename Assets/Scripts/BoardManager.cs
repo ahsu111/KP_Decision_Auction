@@ -26,6 +26,8 @@ public class BoardManager : MonoBehaviour
     public static int columns;
     public static int rows;
 
+
+    public static float timeshownanswer = 1.5f;
     //Prefab of the item interface configuration
     public static GameObject KSItemPrefab;
 
@@ -102,12 +104,12 @@ public class BoardManager : MonoBehaviour
     public static bool auction_finished = false;
 
     // Relating to sampling task
-    public static int boxsize = 300; //for a square, length = width = 300 in the current task.
-    public static int boxcoord = 250;
-    public static int dotsize = 20; //the dot is stored in a 20*20 box.
-    public static int outsideposofbox = boxcoord + boxsize / 2; //the x position of the left side of the left box is -400, and the right side of the right box is 400.
-    public static int insideposofbox = boxcoord - boxsize / 2; //the x position of the right side of the left box is -100, and 
-    public static int gridlines = boxsize / dotsize; //since the box is a square, the number of rows and columns of the grids are the same. // do we need to define the value of the gridlines = 15?
+    public static float boxsize = 375f; //for a square, length = width = 375 in the current task.
+    public static float boxcoord = 300f;
+    public static float dotsize = 15f; //the dot is stored in a 15*15 box.
+    public static float outsideposofbox = boxcoord + boxsize / 2; //the x position of the left side of the left box is -400, and the right side of the right box is 400.
+    public static float insideposofbox = boxcoord - boxsize / 2; //the x position of the right side of the left box is -100, and 
+    public static float gridlines = boxsize / dotsize; //since the box is a square, the number of rows and columns of the grids are the same. // do we need to define the value of the gridlines = 15?
     public static GameObject DotPrefab;
 
     //the possible positions of the items;
@@ -424,6 +426,8 @@ public class BoardManager : MonoBehaviour
         else if (sceneToSetup == "LikertScale")
         {
             keysON = true;
+            auction_finished = false;
+
             selected_button = -1;
 
             Button ButtonZero = GameObject.Find("ButtonZero").GetComponent<Button>();
@@ -458,19 +462,19 @@ public class BoardManager : MonoBehaviour
     void InitialiseListSamplingTask()
     {
         leftgridpositions.Clear();
-        for (int x = -outsideposofbox; x < -insideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
+        for (float x = -outsideposofbox; x < -insideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
         {
-            for (int y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
+            for (float y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
             {
-                leftgridpositions.Add(new Vector2(x + 10, y + 10));
+                leftgridpositions.Add(new Vector2(x + dotsize / 2, y + dotsize / 2));
             }
         }
         rightgridpositions.Clear();
-        for (int x = insideposofbox; x < outsideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
+        for (float x = insideposofbox; x < outsideposofbox; x += ((outsideposofbox - insideposofbox) / gridlines))
         {
-            for (int y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
+            for (float y = -(outsideposofbox - insideposofbox) / 2; y < (outsideposofbox - insideposofbox) / 2; y += ((outsideposofbox - insideposofbox) / gridlines))
             {
-                rightgridpositions.Add(new Vector2(x + 10, y + 10));
+                rightgridpositions.Add(new Vector2(x + dotsize / 2, y + dotsize / 2));
             }
         }
 
@@ -593,20 +597,21 @@ public class BoardManager : MonoBehaviour
                 keysON = false;
 
                 answer = new List<int>() { 0, 1 }[randomYes];
-                
+
                 int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
                 if (correct == 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
-
-                    GameManager.tiempo = 3f;
+                    GameManager.Result1.GetComponent<Text>().color = Color.green;
+                    GameManager.tiempo = timeshownanswer;
                 }
                 else if (correct != 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+                    GameManager.Result1.GetComponent<Text>().color = Color.red;
 
-                    GameManager.tiempo = 3f;
+                    GameManager.tiempo = timeshownanswer;
                 }
                 else
                 {
@@ -626,14 +631,16 @@ public class BoardManager : MonoBehaviour
                 if (correct == 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+                    GameManager.Result1.GetComponent<Text>().color = Color.green;
 
-                    GameManager.tiempo = 3f;
+                    GameManager.tiempo = timeshownanswer;
                 }
                 else if (correct != 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+                    GameManager.Result1.GetComponent<Text>().color = Color.red;
 
-                    GameManager.tiempo = 3f;
+                    GameManager.tiempo = timeshownanswer;
                 }
                 else
                 {
@@ -666,10 +673,18 @@ public class BoardManager : MonoBehaviour
                 if (correct == 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+                    GameManager.Result1.GetComponent<Text>().color = Color.green;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
                 else if (correct != 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+                    GameManager.Result1.GetComponent<Text>().color = Color.red;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
                 else
                 {
@@ -697,10 +712,18 @@ public class BoardManager : MonoBehaviour
                 if (correct == 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+                    GameManager.Result1.GetComponent<Text>().color = Color.green;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
                 else if (correct != 1 && GameManager.trial <= 5)
                 {
                     GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+                    GameManager.Result1.GetComponent<Text>().color = Color.red;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
                 else
                 {
@@ -723,12 +746,10 @@ public class BoardManager : MonoBehaviour
             {
                 if (!(subjectBid <= 0))
                 {
-                    subjectBid -= 0.020f;
-                    subbar.GetComponent<Image>().fillAmount = subjectBid / maxNum;
-
+                    subjectBid -= 0.023f;
+                    subjectBidding.text = "$" + (subjectBid).ToString("0.#");
+                    subbar.GetComponent<Image>().fillAmount = Convert.ToSingle((subjectBid).ToString("0.#")) / maxNum;
                 }
-                subjectBidding.text = "$" + (subjectBid).ToString("0.#");
-                subbar.GetComponent<Image>().fillAmount = Convert.ToSingle((subjectBid).ToString("0.#")) / maxNum;
             }
 
             if (!auction_finished && Input.GetKey(KeyCode.RightArrow))
@@ -736,32 +757,29 @@ public class BoardManager : MonoBehaviour
 
                 if (subjectBid < maxNum)
                 {
-                    subjectBid += 0.020f;
-                    subbar.GetComponent<Image>().fillAmount = subjectBid / maxNum;
+                    subjectBid += 0.023f;
+                    subjectBidding.text = "$" + (subjectBid).ToString("0.#");
+                    subbar.GetComponent<Image>().fillAmount = Convert.ToSingle((subjectBid).ToString("0.#")) / maxNum;
                 }
-                subjectBidding.text = "$" + (subjectBid).ToString("0.#");
-                subbar.GetComponent<Image>().fillAmount = Convert.ToSingle((subjectBid).ToString("0.#")) / maxNum;
             }
 
             if (!auction_finished && Input.GetKeyDown(KeyCode.UpArrow))
             {
-                float computerBid1 = UnityEngine.Random.Range(0.0f, 1.0f);
-                computerBid = maxNum * computerBid1;
+                subjectBid = Convert.ToSingle((subjectBid).ToString("0.#"));
 
+                computerBid = Convert.ToSingle((maxNum * UnityEngine.Random.Range(0.0f, 1.0f)).ToString("0.#"));
 
                 float EPSILON = 0.001f;
 
                 while (Math.Abs(Math.Round(computerBid, 1) - Math.Round(subjectBid, 1)) < EPSILON)
                 {
-                    computerBid = maxNum * UnityEngine.Random.Range(0.0f, 1.0f);
+                    computerBid = Convert.ToSingle((maxNum * UnityEngine.Random.Range(0.0f, 1.0f)).ToString("0.#"));
                 }
-
-                compbar.GetComponent<Image>().fillAmount = computerBid1;
 
                 computerbid = GameObject.Find("computerBidding");
                 computerBidding = computerbid.GetComponent<Text>();
                 computerBidding.text = "$" + (computerBid).ToString("0.#");
-
+                compbar.GetComponent<Image>().fillAmount = Convert.ToSingle((computerBid).ToString("0.#")) / maxNum;
 
                 //Debug.Log(subjectBid + "   " + computerBid);
 
@@ -769,26 +787,42 @@ public class BoardManager : MonoBehaviour
                 if (subjectBid > computerBid)
                 {
                     auctionResult.text = "Answer Recorded; You won the auction";
+                    auctionResult.color = Color.green;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
 
                 else
                 {
                     auctionResult.text = "Answer Recorded; You lost the auction";
+                    auctionResult.color = Color.red;
+
+                    GameManager.showTimer = false;
+                    GameObject.Find("Timer").SetActive(false);
                 }
 
                 //auction_finished = true;
 
-                GameManager.tiempo = 3.0f;
+                GameManager.tiempo = timeshownanswer;
                 GameManager.totalTime = GameManager.tiempo;
             }
         }
         else if (GameManager.escena == "LikertScale")
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (!auction_finished && Input.GetKeyDown(KeyCode.UpArrow))
             {
                 GameObject.Find("RecordText").GetComponent<Text>().text = "Answer Recorded";
-                GameManager.tiempo = 3.0f;
+                GameManager.tiempo = timeshownanswer;
                 GameManager.totalTime = GameManager.tiempo;
+
+                GameManager.showTimer = false;
+                GameObject.Find("Timer").SetActive(false);
+
+
+                auction_finished = true;
+
+                keysON = false;
             }
         }
     }
@@ -831,7 +865,7 @@ public class BoardManager : MonoBehaviour
         //Set Participant ID
         GameManager.randomisationID = pIDs.Substring(1);
         //Set Participant ID
-        GameManager.GAMETYPE = pIDs.Substring(0,1).ToLower();
+        GameManager.GAMETYPE = pIDs.Substring(0, 1).ToLower();
 
         Debug.Log(GameManager.GAMETYPE);
 
