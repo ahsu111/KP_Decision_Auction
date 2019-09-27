@@ -98,8 +98,9 @@ public class BoardManager : MonoBehaviour
     public static Text auctionResult;
 
 
-    public static Button[] button_list;
+    //public static Toggle[] button_list;
     public static int selected_button;
+    public static Slider LikertSlider;
 
     public static bool auction_finished = false;
 
@@ -126,20 +127,30 @@ public class BoardManager : MonoBehaviour
     void InitialiseList()
     {
         gridPositions.Clear();
-
-        // Generate a list of possible positions, this is shaped like a box with a centre cut out
-        for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
+        int radius = 350;
+        for (int i = 0; i < ws.Length; i++)
         {
-            for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
-            {
-                if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
-                {
-                    gridPositions.Add(new Vector2(x, y));
-                }
-            }
+            // Generate a new item every this many radians...
+            double radian_separation = (360f / ws.Length * Math.PI) / 180;
+            //Debug.Log((float)Math.Sin(radian_separation * i) * radius + " " +
+            //    (float)Math.Cos(radian_separation * i) * radius);
+            gridPositions.Add(new Vector2((float)Math.Sin(radian_separation * i) * radius,
+                (float)Math.Cos(radian_separation * i) * radius));
         }
 
-        //Debug.Log("Number of possible positions: " + gridPositions.Count);
+        //// Generate a list of possible positions, this is shaped like a box with a centre cut out
+        //for (int x = -resolutionWidth / 2; x < resolutionWidth / 2; x += resolutionWidth / columns)
+        //{
+        //    for (int y = -resolutionHeight / 2 + bottommargin; y < resolutionHeight / 2; y += ((resolutionHeight - bottommargin) / rows))
+        //    {
+        //        if (Math.Abs(x) > centremargin || Math.Abs(y) > centremargin)
+        //        {
+        //            gridPositions.Add(new Vector2(x, y));
+        //        }
+        //    }
+        //}
+
+        Debug.Log("Number of possible positions: " + gridPositions.Count);
     }
 
     //Call only for visualizing grid in the Canvas.
@@ -181,6 +192,7 @@ public class BoardManager : MonoBehaviour
     //3. The instance prefab is uploaded
     void setKnapsackInstance()
     {
+
         int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
         question = "$" + GameManager.kinstances[randInstance].profit + System.Environment.NewLine + GameManager.kinstances[randInstance].capacity + "kg?";
 
@@ -328,6 +340,21 @@ public class BoardManager : MonoBehaviour
         {
             canvas = GameObject.Find("Canvas");
 
+            if (GameManager.FeedbackList[GameManager.block - 1] == 1)
+            {
+                GameManager.feedbackOn = true;
+            }
+            else
+            {
+                GameManager.feedbackOn = false;
+            }
+
+            //  Instance information
+            Debug.Log("Setting up  Instance: Block " + (GameManager.block) + "/" + GameManager.numberOfBlocks +
+                ", Trial " + GameManager.trial + "/" + GameManager.numberOfTrials + " , Total Trial " +
+                GameManager.TotalTrials + " , Current Instance " + (GameManager.instanceRandomization[GameManager.TotalTrials - 1] + 1) +
+                " , Feedback " + GameManager.feedbackOn);
+
             setKnapsackInstance();
             setQuestion();
             keysON = true;
@@ -359,6 +386,21 @@ public class BoardManager : MonoBehaviour
             answer = 2;
 
             canvas = GameObject.Find("Canvas");
+
+            if (GameManager.FeedbackList[GameManager.block - 1] == 1)
+            {
+                GameManager.feedbackOn = true;
+            }
+            else
+            {
+                GameManager.feedbackOn = false;
+            }
+
+            //  Instance information
+            Debug.Log("Setting up  Instance: Block " + (GameManager.block) + "/" + GameManager.numberOfBlocks +
+                ", Trial " + GameManager.trial + "/" + GameManager.numberOfTrials + " , Total Trial " +
+                GameManager.TotalTrials + " , Current Instance " + (GameManager.instanceRandomization[GameManager.TotalTrials - 1] + 1) + 
+                " , Feedback " + GameManager.feedbackOn);
 
             //InitialiseList();
             int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
@@ -404,11 +446,11 @@ public class BoardManager : MonoBehaviour
             auctionResult = result.GetComponent<Text>();
             auctionResult.text = "";
 
-            float init_fill = UnityEngine.Random.Range(0.0f, 1.0f);
+            subjectBid = Convert.ToSingle((maxNum * UnityEngine.Random.Range(0.0f, 1.0f)).ToString("0.#"));
+            float init_fill = subjectBid / maxNum;
             subbar = GameObject.Find("subjectBar");
             subjectBar = subbar.GetComponent<Image>();
             subbar.GetComponent<Image>().fillAmount = init_fill;
-            subjectBid = maxNum * init_fill;
 
             subbid = GameObject.Find("subjectBidding");
             subjectBidding = subbid.GetComponent<Text>();
@@ -430,27 +472,35 @@ public class BoardManager : MonoBehaviour
 
             selected_button = -1;
 
-            Button ButtonZero = GameObject.Find("ButtonZero").GetComponent<Button>();
-            Button ButtonOne = GameObject.Find("ButtonOne").GetComponent<Button>();
-            Button ButtonTwo = GameObject.Find("ButtonTwo").GetComponent<Button>();
-            Button ButtonThree = GameObject.Find("ButtonThree").GetComponent<Button>();
-            Button ButtonFour = GameObject.Find("ButtonFour").GetComponent<Button>();
-            Button ButtonFive = GameObject.Find("ButtonFive").GetComponent<Button>();
+            LikertSlider = GameObject.Find("Slider").GetComponent<Slider>();
 
-            button_list = new Button[] { ButtonZero, ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive };
+            LikertSlider.Select();
+            LikertSlider.OnSelect(null);
 
-            int init_choice = Random.Range(0, 6);
-            Debug.Log(init_choice + "    " + button_list[init_choice]);
+            LikertSlider.value = Random.Range(0, 6);
+            Debug.Log(LikertSlider.value);
 
-            selected_button = init_choice;
+            //Toggle ButtonZero = GameObject.Find("ButtonZero").GetComponent<Toggle>();
+            //Toggle ButtonOne = GameObject.Find("ButtonOne").GetComponent<Toggle>();
+            //Toggle ButtonTwo = GameObject.Find("ButtonTwo").GetComponent<Toggle>();
+            //Toggle ButtonThree = GameObject.Find("ButtonThree").GetComponent<Toggle>();
+            //Toggle ButtonFour = GameObject.Find("ButtonFour").GetComponent<Toggle>();
+            //Toggle ButtonFive = GameObject.Find("ButtonFive").GetComponent<Toggle>();
 
-            button_list[init_choice].Select();
-            button_list[init_choice].OnSelect(null);
+            //button_list = new Toggle[] { ButtonZero, ButtonOne, ButtonTwo, ButtonThree, ButtonFour, ButtonFive };
 
-            foreach (var btn in button_list)
-            {
-                btn.onClick.AddListener(ButtonClicked);
-            }
+            //int init_choice = Random.Range(0, 6);
+            //Debug.Log(init_choice + "    " + button_list[init_choice]);
+
+            //selected_button = init_choice;
+
+            //button_list[init_choice].Select();
+            //button_list[init_choice].OnSelect(null);
+            //button_list[init_choice].isOn = true;
+            //foreach (var btn in button_list)
+            //{
+            //    btn.OnSelect.AddListener(ButtonClicked);
+            //}
         }
     }
 
@@ -559,7 +609,7 @@ public class BoardManager : MonoBehaviour
 
     public static void ButtonClicked()
     {
-        //Debug.Log("Button Clicked " + EventSystem.current.currentSelectedGameObject.name);// GetComponent<Text>().text);
+        Debug.Log("Button Clicked " + EventSystem.current.currentSelectedGameObject.name);// GetComponent<Text>().text);
         //GameManager.SetTimeStamp();
         //GameManager.ChangeToNextScene(itemClicks, false);
     }
@@ -571,6 +621,47 @@ public class BoardManager : MonoBehaviour
         // timer.sizeDelta = new Vector2 (timerWidth * (GameManager.tiempo / GameManager.totalTime), timer.rect.height);
         Image timer = GameObject.Find("Timer").GetComponent<Image>();
         timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
+    }
+
+    private void answerCheck(int correct)
+    {
+        if (correct == 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
+        {
+            GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+            GameManager.Result1.GetComponent<Text>().color = Color.green;
+
+
+            Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
+                GameManager.trial) + ", CORRECT ANSWER");
+            if (GameManager.GAMETYPE == "k")
+            {
+                GameManager.showTimer = false;
+                GameObject.Find("Timer").SetActive(false);
+            }
+            else
+            {
+                GameManager.tiempo = timeshownanswer;
+            }
+        }
+        else if (correct != 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
+        {
+            GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+            GameManager.Result1.GetComponent<Text>().color = Color.red;
+
+            if (GameManager.GAMETYPE == "k")
+            {
+                GameManager.showTimer = false;
+                GameObject.Find("Timer").SetActive(false);
+            }
+            else
+            {
+                GameManager.tiempo = timeshownanswer;
+            }
+        }
+        else
+        {
+            GameManager.changeToNextScene(0, 0, 1);
+        }
     }
 
     //Sets the triggers for pressing the corresponding keys
@@ -600,24 +691,7 @@ public class BoardManager : MonoBehaviour
 
                 int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
-                if (correct == 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
-                    GameManager.Result1.GetComponent<Text>().color = Color.green;
-                    GameManager.tiempo = timeshownanswer;
-                }
-                else if (correct != 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
-                    GameManager.Result1.GetComponent<Text>().color = Color.red;
-
-                    GameManager.tiempo = timeshownanswer;
-                }
-                else
-                {
-                    GameManager.changeToNextScene(0, 0, 1);
-
-                }
+                answerCheck(correct);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -628,25 +702,7 @@ public class BoardManager : MonoBehaviour
 
                 int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
-                if (correct == 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
-                    GameManager.Result1.GetComponent<Text>().color = Color.green;
-
-                    GameManager.tiempo = timeshownanswer;
-                }
-                else if (correct != 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
-                    GameManager.Result1.GetComponent<Text>().color = Color.red;
-
-                    GameManager.tiempo = timeshownanswer;
-                }
-                else
-                {
-                    GameManager.changeToNextScene(0, 0, 1);
-
-                }
+                answerCheck(correct);
             }
         }
         else if (GameManager.escena == "TrialAnswer")
@@ -670,27 +726,7 @@ public class BoardManager : MonoBehaviour
 
                 int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
-                if (correct == 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
-                    GameManager.Result1.GetComponent<Text>().color = Color.green;
-
-                    GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
-                }
-                else if (correct != 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
-                    GameManager.Result1.GetComponent<Text>().color = Color.red;
-
-                    GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
-                }
-                else
-                {
-                    GameManager.changeToNextScene(0, 0, 1);
-
-                }
+                answerCheck(correct);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -709,27 +745,7 @@ public class BoardManager : MonoBehaviour
 
                 int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
 
-                if (correct == 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
-                    GameManager.Result1.GetComponent<Text>().color = Color.green;
-
-                    GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
-                }
-                else if (correct != 1 && GameManager.trial <= 5)
-                {
-                    GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
-                    GameManager.Result1.GetComponent<Text>().color = Color.red;
-
-                    GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
-                }
-                else
-                {
-                    GameManager.changeToNextScene(0, 0, 1);
-
-                }
+                answerCheck(correct);
             }
         }
         else if (GameManager.escena == "SetUp")
@@ -802,7 +818,7 @@ public class BoardManager : MonoBehaviour
                     GameObject.Find("Timer").SetActive(false);
                 }
 
-                //auction_finished = true;
+                auction_finished = true;
 
                 GameManager.tiempo = timeshownanswer;
                 GameManager.totalTime = GameManager.tiempo;
@@ -812,7 +828,21 @@ public class BoardManager : MonoBehaviour
         {
             if (!auction_finished && Input.GetKeyDown(KeyCode.UpArrow))
             {
-                GameObject.Find("RecordText").GetComponent<Text>().text = "Answer Recorded";
+                //for (int btnNum = 0; btnNum <= 5; btnNum++)
+                //{
+                //    Debug.Log(button_list[btnNum].name + " " + button_list[btnNum].isOn);
+                //}
+
+                GameObject.Find("RecordText").GetComponent<Text>().text = "Answer recorded, you selected " + LikertSlider.value;
+
+
+                selected_button = (int)LikertSlider.value;
+
+
+                Debug.Log(selected_button);
+
+                GameObject.Find("Slider").SetActive(false);
+
                 GameManager.tiempo = timeshownanswer;
                 GameManager.totalTime = GameManager.tiempo;
 
@@ -826,6 +856,7 @@ public class BoardManager : MonoBehaviour
             }
         }
     }
+
 
     private void highlightButton(GameObject butt)
     {

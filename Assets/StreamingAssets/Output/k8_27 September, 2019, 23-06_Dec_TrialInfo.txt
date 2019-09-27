@@ -1,0 +1,3 @@
+PartcipantID:k8
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
+1;1;2;0;2.681156;1;16;(0,350)(-303.1089,-175)(303.1089,-175)(-303.1089,175)(4.286122E-14,-350)(303.1089,175);

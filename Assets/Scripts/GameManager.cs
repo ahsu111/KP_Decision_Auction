@@ -68,16 +68,19 @@ public class GameManager : MonoBehaviour
     public static float timedots = 0.3f;
 
     //Total number of trials in each block
-    private static int numberOfTrials = 30;
+    public static int numberOfTrials = 30;
 
     //Total number of blocks
-    private static int numberOfBlocks = 3;
+    public static int numberOfBlocks = 3;
 
     //Number of instance file to be considered. From i1.txt to i_.txt..
     public static int numberOfInstances = 3;
 
     //The order of the instances to be presented
     public static int[] instanceRandomization;
+
+    //The order of the instances to be presented
+    public static int[] FeedbackList;
 
     //The order of the left/right No/Yes randomization
     public static int[] buttonRandomization;
@@ -651,6 +654,7 @@ public class GameManager : MonoBehaviour
         dictionary.TryGetValue("numberOfInstances", out string numberOfInstancesS);
 
         dictionary.TryGetValue("instanceRandomization", out string instanceRandomizationS);
+        dictionary.TryGetValue("feedback", out string feedbackS);
 
 
         timeRest1min = Convert.ToSingle(timeRest1minS);
@@ -662,6 +666,7 @@ public class GameManager : MonoBehaviour
         numberOfBlocks = int.Parse(numberOfBlocksS);
         numberOfInstances = int.Parse(numberOfInstancesS);
         int[] instanceRandomizationNo0 = Array.ConvertAll(instanceRandomizationS.Substring(1, instanceRandomizationS.Length - 2).Split(','), int.Parse);
+        FeedbackList = Array.ConvertAll(feedbackS.Substring(1, feedbackS.Length - 2).Split(','), int.Parse);
 
         instanceRandomization = new int[instanceRandomizationNo0.Length];
         //foreach (int i in instanceRandomizationNo0)
@@ -954,7 +959,7 @@ public class GameManager : MonoBehaviour
     void startTimer()
     {
         tiempo -= Time.deltaTime;
-        Debug.Log(tiempo + "       Dots shown: " + dotshown + "       Keys on: " + BoardManager.keysON);
+        //Debug.Log(tiempo + "       Dots shown: " + dotshown + "       Keys on: " + BoardManager.keysON);
         if (showTimer)
         {
             boardScript.updateTimer();

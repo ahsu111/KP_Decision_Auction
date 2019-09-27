@@ -1,12 +1,4 @@
 To do list:
-2. The number of dots in one box is always fixed to be 313, and the number for the other box should be 313 + 58 or 313 + 24. So what changes across trials is the specific positions of dots in each trial, and also which box, the left or right, contains more dots. 
-
-5. The position of the items to display in Knapsack should be framed in a box, and also the size of the items may be larger than the current size. 
-
-6. subjects' responses in the likert scale should be limited to once, so they cannot change the final value after submission.
-
-1.	The order of the sampling task and the KS decision making task will be randomized in the inpute .txt file. 
-
-3.	For the sampling task, it will also have 8 blocks, with four of them having feedback (Right/wrong) after each trial, and four without feedback info. The order of these 8 blocks will be randomized. 
-
 9. add payment
+
+10. output

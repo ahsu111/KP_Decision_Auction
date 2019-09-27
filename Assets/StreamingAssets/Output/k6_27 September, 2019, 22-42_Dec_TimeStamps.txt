@@ -1,0 +1,4 @@
+PartcipantID:k6
+InitialTimeStamp:22-42-30-527
+block;trial;eventType;elapsedTime
+1;1;TrialKP;55

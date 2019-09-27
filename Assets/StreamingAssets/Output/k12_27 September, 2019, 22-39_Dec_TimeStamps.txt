@@ -1,0 +1,4 @@
+PartcipantID:k12
+InitialTimeStamp:22-39-39-141
+block;trial;eventType;elapsedTime
+1;1;TrialKP;71

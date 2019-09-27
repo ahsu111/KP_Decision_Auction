@@ -1,3 +1,0 @@
-LeftBox:24
-RightBox:15
-solution:0

@@ -1,0 +1,13 @@
+PartcipantID:k7
+InitialTimeStamp:22-59-29-798
+block;trial;eventType;elapsedTime
+1;1;TrialKP;54
+1;1;ParticipantSkip;1170
+1;1;TrialAnswer;1200
+1;1;InterTrialRest;2236
+1;2;TrialKP;3477
+1;2;ParticipantSkip;4178
+1;2;TrialAnswer;4207
+1;2;ParticipantAnswer;5213
+1;2;InterTrialRest;5241
+1;3;TrialKP;6478

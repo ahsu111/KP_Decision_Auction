@@ -1,3 +1,3 @@
-LeftBox:30
-RightBox:25
+LeftBox:348
+RightBox:313
 solution:0

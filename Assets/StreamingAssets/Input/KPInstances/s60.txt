@@ -1,3 +1,0 @@
-LeftBox:9
-RightBox:26
-solution:1

@@ -1,0 +1,7 @@
+PartcipantID:k8
+InitialTimeStamp:23-06-05-148
+block;trial;eventType;elapsedTime
+1;1;TrialKP;52
+1;1;ParticipantSkip;2727
+1;1;TrialAnswer;2756
+1;1;InterTrialRest;3794
