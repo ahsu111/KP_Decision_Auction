@@ -1,0 +1,11 @@
+PartcipantID:s9
+RandID:9
+InitialTimeStamp:15-16-54-469
+block;trial;eventType;elapsedTime
+1;1;ParticipantAnswer;2.312
+1;2;ParticipantAnswer;5.693
+1;3;ParticipantAnswer;9.13
+1;4;ParticipantAnswer;12.741
+1;5;ParticipantAnswer;16.306
+1;5;ParticipantAnswer;20.311
+1;5;ParticipantAnswer;22.768

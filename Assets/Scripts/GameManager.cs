@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
         {
             trial++;
             TotalTrials = trial + (block - 1) * numberOfTrials;
-            Debug.Log(TotalTrials);
+            //Debug.Log(TotalTrials);
             showTimer = false;
 
             GameManager.dotshown = false;
@@ -325,7 +325,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (escena != "SetUp")
+        if (escena != "SetUp" && escena != "End" &&
+            escena != "Payment")
         {
             startTimer();
             pauseManager();
@@ -1014,8 +1015,9 @@ public class GameManager : MonoBehaviour
     {
         string perfText = "Performance: ";
 
-        for (int i = 0; i < numberOfTrials * numberOfBlocks; i++)
+        for (int i = 0; i < paylist.Count(); i++)
         {
+            Debug.Log(i);
             // Payment calculation
             perfText += " $" + paylist[i] + ";";
         }

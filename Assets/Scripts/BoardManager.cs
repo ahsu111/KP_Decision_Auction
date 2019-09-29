@@ -380,8 +380,8 @@ public class BoardManager : MonoBehaviour
             {
                 GameManager.feedbackOn = false;
             }
-            Debug.Log(GameManager.TotalTrials);
-            Debug.Log(GameManager.instanceRandomization[GameManager.TotalTrials]);
+            //Debug.Log(GameManager.TotalTrials);
+            //Debug.Log(GameManager.instanceRandomization[GameManager.TotalTrials]);
 
             //InitialiseList();
             randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
@@ -393,7 +393,7 @@ public class BoardManager : MonoBehaviour
                 " , Feedback " + GameManager.feedbackOn);
 
 
-            Debug.Log(randInstance);
+            //Debug.Log(randInstance);
             DotPrefab = (GameObject)Resources.Load("whiteDot");
 
             //If the bool returned by LayoutObjectAtRandom() is false, then retry again:
@@ -700,8 +700,6 @@ public class BoardManager : MonoBehaviour
 
             GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
             highlightButton(boto);
-            //GameManager.changeToNextScene (1,0,2);
-
 
             GameObject.Find("LEFTbutton").SetActive(false);
             GameObject.Find("RIGHTbutton").SetActive(false);
@@ -720,8 +718,6 @@ public class BoardManager : MonoBehaviour
 
             GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
             highlightButton(boto);
-            //GameManager.changeToNextScene (0,0,2);
-
 
             GameObject.Find("LEFTbutton").SetActive(false);
             GameObject.Find("RIGHTbutton").SetActive(false);
@@ -773,9 +769,10 @@ public class BoardManager : MonoBehaviour
 
                 answer = 1;
 
-                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1] - 1].solution == answer) ? 1 : 0;
+                GameManager.solutionQ = GameManager.sinstances[randInstance - 1].solution;
+                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
-                answerCheck(correct);
+                answerCheck(GameManager.correct);
             }
         }
         else if (GameManager.escena == "TrialAnswer")
@@ -790,8 +787,6 @@ public class BoardManager : MonoBehaviour
 
                 GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
                 highlightButton(boto);
-                //GameManager.changeToNextScene (1,0,2);
-
 
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
@@ -810,9 +805,6 @@ public class BoardManager : MonoBehaviour
 
                 GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
                 highlightButton(boto);
-                //GameManager.changeToNextScene (0,0,2);
-
-
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
 
