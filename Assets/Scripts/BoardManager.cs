@@ -1000,7 +1000,11 @@ public class BoardManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GameManager.saveTimeStamp(GameManager.escena);
+        if (GameManager.escena != "SetUp")
+        {
+            GameManager.saveTimeStamp(GameManager.escena);
+        }
+        //GameManager.saveTimeStamp(GameManager.escena);
     }
 
     // Update is called once per frame

@@ -1,8 +1,0 @@
-PartcipantID:k7
-InitialTimeStamp:23-01-39-440
-block;trial;eventType;elapsedTime
-1;1;TrialKP;55
-1;1;ParticipantSkip;1037
-1;1;TrialAnswer;1065
-1;1;InterTrialRest;2105
-1;2;TrialKP;3360

@@ -1,4 +1,0 @@
-PartcipantID:s23
-RandID:23
-InitialTimeStamp:10-56-02-524
-block;trial;eventType;elapsedTime

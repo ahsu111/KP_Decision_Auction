@@ -1,4 +1,0 @@
-PartcipantID:k1
-RandID:1
-InitialTimeStamp:14-15-49-208
-block;trial;solution;answer;correct;timeSpent;ReverseButtons;instanceNumber;pay;xyCoordinates;feedbackON;error

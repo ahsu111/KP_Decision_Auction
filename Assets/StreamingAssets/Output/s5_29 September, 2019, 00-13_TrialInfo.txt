@@ -1,9 +1,0 @@
-PartcipantID:s5
-RandID:5
-InitialTimeStamp:00-13-12-274
-block;trial;answer;correct;timeSpent;ReverseButtons;instanceNumber;pay;xyCoordinates;
-1;1;0;0;-973.54;0;31;0;
-1;2;0;1;-973.7784;0;38;0;
-1;3;0;1;-970.3029;0;40;3;
-1;4;0;1;-973.1438;0;33;0;
-1;5;0;1;-972.8397;0;36;3;

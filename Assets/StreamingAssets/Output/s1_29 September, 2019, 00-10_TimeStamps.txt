@@ -1,8 +1,0 @@
-PartcipantID:s1
-RandID:1
-InitialTimeStamp:00-10-17-430
-block;trial;eventType;elapsedTime
-1;1;TrialSampling;120
-1;1;InterTrialRest;2873
-1;2;TrialSampling;4269
-1;2;InterTrialRest;6943

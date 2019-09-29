@@ -1,6 +1,0 @@
-PartcipantID:k1
-RandID:1
-InitialTimeStamp:00-04-24-169
-block;trial;answer;correct;timeSpent;itemsSelected;finalvalue;finalweight;ReverseButtons;instanceNumber;pay;xyCoordinates;
-1;1;0;0;0.622694;0;36;0;(-303.1089,-175)(4.286122E-14,-350)(303.1089,-175)(-303.1089,175)(303.1089,175)(0,350);
-1;2;0;0;0.359045;0;31;0;(-303.1089,175)(303.1089,175)(0,350)(4.286122E-14,-350)(-303.1089,-175)(303.1089,-175);

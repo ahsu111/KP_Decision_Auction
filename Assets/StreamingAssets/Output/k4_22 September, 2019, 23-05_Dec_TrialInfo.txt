@@ -1,3 +1,0 @@
-PartcipantID:k4
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
-1;1;0;1;1.085533;1;58;(400,178)(400,-284)(-400,-20)(300,178)(-300,-152)(-500,-218);

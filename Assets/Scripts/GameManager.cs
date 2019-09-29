@@ -192,11 +192,6 @@ public class GameManager : MonoBehaviour
 
         InitGame();
 
-        if (escena != "SetUp")
-        {
-            saveTimeStamp(escena);
-        }
-
     }
 
 
@@ -288,6 +283,22 @@ public class GameManager : MonoBehaviour
             showTimer = true;
             tiempo = timeRest2;
             totalTime = tiempo;
+        }
+        else if (escena == "End")
+        {
+            showTimer = false;
+
+            GameObject.Find("Skip").GetComponent<Button>().onClick.AddListener(SkipClicked);
+        }
+        else if (escena == "Payment")
+        {
+            showTimer = false;
+
+            Text perf = GameObject.Find("PerfText").GetComponent<Text>();
+            perf.text = DisplayPerf();
+
+            Text pay = GameObject.Find("PayText").GetComponent<Text>();
+            pay.text = "Total Payment: $" + Math.Ceiling(payAmount).ToString();
         }
         else if (escena == "BDM_Auction")
         {
@@ -956,6 +967,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        else if (escena == "End")
+        {
+            SceneManager.LoadScene("Payment");
+        }
     }
 
 
@@ -994,6 +1009,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Function to display user performance (last scene)
+    public static string DisplayPerf()
+    {
+        string perfText = "Performance: ";
+
+        for (int i = 0; i < numberOfTrials * numberOfBlocks; i++)
+        {
+            // Payment calculation
+            perfText += " $" + paylist[i] + ";";
+        }
+        return perfText;
+    }
 
     /// <summary>
     /// In case of an error: Skip trial and go to next one.
@@ -1069,5 +1096,11 @@ public class GameManager : MonoBehaviour
     }
 
 
+    // Change to next scene if the user clicks skip
+    static void SkipClicked()
+    {
+        Debug.Log("Skip Clicked");
+        changeToNextScene(1);
+    }
 }
 

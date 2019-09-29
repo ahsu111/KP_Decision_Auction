@@ -1,4 +1,0 @@
-PartcipantID:k7
-InitialTimeStamp:22-41-22-132
-block;trial;eventType;elapsedTime
-1;1;TrialKP;54

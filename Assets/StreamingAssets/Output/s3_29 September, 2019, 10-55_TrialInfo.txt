@@ -1,4 +1,0 @@
-PartcipantID:s3
-RandID:3
-InitialTimeStamp:10-55-25-402
-block;trial;answer;correct;timeSpent;instanceNumber;pay;

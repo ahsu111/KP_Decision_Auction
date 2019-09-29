@@ -1,4 +1,0 @@
-PartcipantID:s1
-RandID:1
-InitialTimeStamp:12-32-02-268
-block;trial;solution;answer;correct;timeSpent;instanceNumber;pay;feedbackON;error

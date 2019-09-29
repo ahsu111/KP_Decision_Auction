@@ -1,4 +1,0 @@
-PartcipantID:k8
-InitialTimeStamp:22-44-05-684
-block;trial;eventType;elapsedTime
-1;1;TrialKP;54

@@ -1,4 +1,0 @@
-PartcipantID:s2
-RandID:2
-InitialTimeStamp:10-53-38-028
-block;trial;answer;correct;timeSpent;instanceNumber;pay;
