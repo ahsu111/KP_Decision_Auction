@@ -1,0 +1,15 @@
+PartcipantID:k1
+RandID:1
+InitialTimeStamp:00-04-24-169
+block;trial;eventType;elapsedTime
+1;1;TrialKP;52
+1;1;ParticipantSkip;660
+1;1;TrialAnswer;689
+1;1;ParticipantAnswer;919
+1;1;InterTrialRest;945
+1;2;TrialKP;2190
+1;2;ParticipantSkip;2554
+1;2;TrialAnswer;2582
+1;2;ParticipantAnswer;2810
+1;2;InterTrialRest;2837
+1;3;TrialKP;4083

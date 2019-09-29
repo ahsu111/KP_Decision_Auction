@@ -1,0 +1,4 @@
+PartcipantID:s1
+RandID:1
+InitialTimeStamp:10-51-37-141
+block;trial;answer;correct;timeSpent;instanceNumber;pay;

@@ -1,0 +1,4 @@
+PartcipantID:s2
+RandID:2
+InitialTimeStamp:10-57-16-862
+block;trial;eventType;elapsedTime

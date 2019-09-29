@@ -1,0 +1,5 @@
+PartcipantID:k2
+RandID:2
+InitialTimeStamp:14-17-37-642
+block;trial;solution;answer;correct;timeSpent;ReverseButtons;instanceNumber;pay;xyCoordinates;feedbackON;error
+1;1;1;1;1;0.4663372;0;19;3;(303.1089,175)(4.286122E-14,-350)(-303.1089,175)(303.1089,-175)(-303.1089,-175)(0,350);False;

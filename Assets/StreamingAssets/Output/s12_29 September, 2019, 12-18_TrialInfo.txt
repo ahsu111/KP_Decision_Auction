@@ -1,0 +1,11 @@
+PartcipantID:s12
+RandID:12
+InitialTimeStamp:12-18-56-446
+block;trial;solution;answer;correct;timeSpent;instanceNumber;pay;feedbackON;error
+1;1;0;0;1;0.3242188;35;0;True;
+1;2;1;1;1;0.2918091;32;3;True;
+1;3;1;1;1;0.322998;34;0;True;
+1;4;0;0;1;0.2850342;40;0;True;
+1;5;0;0;1;0.3239136;38;3;True;
+1;LikertScale;3;NA;0.7887573;NA;NA;NA;
+1;BDM_Auction;0.3;0.4;1.280823;NA;NA;NA;

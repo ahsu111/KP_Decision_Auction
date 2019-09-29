@@ -1,0 +1,4 @@
+PartcipantID:s10
+RandID:10
+InitialTimeStamp:00-12-20-376
+block;trial;answer;correct;timeSpent;ReverseButtons;instanceNumber;pay;xyCoordinates;

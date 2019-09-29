@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
     public static float timeRest2 = 10;
 
     //Time given for each trial (The total time the items are shown -With and without the question-)
-    public static float timeQuestion = 10;
+    public static float timeQuestion = 10.0f;
+    public static float timeSampling = 999.0f;
+    public static float timeAuction = 999.0f;
 
     //Time given for answering
     public static float timeAnswer = 3;
@@ -93,16 +95,21 @@ public class GameManager : MonoBehaviour
 
     public static string dateID = @System.DateTime.Now.ToString("dd MMMM, yyyy, HH-mm");
 
-    private static string identifierName;
+    public static string Identifier;
 
     //Is the question shown on scene 1?
     //private static int questionOn;
 
     //Input and Outout Folders with respect to the Application.dataPath;
-    private static string inputFolder = "/StreamingAssets/Input/";
-    private static string inputFolderKSInstances = "/StreamingAssets/Input/KPInstances/";
-    private static string outputFolder = "/StreamingAssets/Output/";
+    public static string inputFolder = "/StreamingAssets/Input/";
+    public static string inputFolderKSInstances = "/StreamingAssets/Input/KPInstances/";
+    public static string outputFolder = "/StreamingAssets/Output/";
 
+    // Complete folder path of inputs and ouputs
+    public static string folderPathLoad;
+    public static string folderPathLoadInstances;
+    public static string folderPathSave;
+    
     public static GameObject Result1;
 
     // A list of floats to record participant performance
@@ -116,7 +123,10 @@ public class GameManager : MonoBehaviour
     // Keep track of total payment
     // Default value is the show up fee
     public static double payAmount = 8.00;
+    public static double payPerTrial = 3.00;
 
+    public static int solutionQ;
+    public static int correct;
 
     //A structure that contains the parameters of each instance
     public struct KInstance
@@ -163,6 +173,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
+        // Complete folder path of inputs and ouputs
+        folderPathLoad = Application.dataPath + inputFolder;
+        folderPathLoadInstances = Application.dataPath + inputFolderKSInstances;
+        folderPathSave = Application.dataPath + outputFolder;
         //Makes the Game manager a Singleton
         if (instance == null)
         {
@@ -206,14 +220,14 @@ public class GameManager : MonoBehaviour
         {
             //Only uploads parameters and instances once.
             block++;
-            randomizeButtons();
             boardScript.setupInitialScreen();
-
         }
         else if (escena == "TrialKP")
         {
             trial++;
             TotalTrials = trial + (block - 1) * numberOfTrials;
+            Debug.Log(TotalTrials);
+
             showTimer = true;
             boardScript.SetupScene(escena);
 
@@ -225,6 +239,7 @@ public class GameManager : MonoBehaviour
         {
             trial++;
             TotalTrials = trial + (block - 1) * numberOfTrials;
+            Debug.Log(TotalTrials);
             showTimer = false;
 
             GameManager.dotshown = false;
@@ -243,7 +258,6 @@ public class GameManager : MonoBehaviour
             showTimer = true;
             boardScript.SetupScene(escena);
             Result1 = GameObject.Find("ResultText");
-
 
             //Debug.Log(Result1);
             //Result1.SetActive(false);
@@ -274,16 +288,13 @@ public class GameManager : MonoBehaviour
             showTimer = true;
             tiempo = timeRest2;
             totalTime = tiempo;
-            //Debug.Log ("TiempoRest=" + tiempo);
-
-            randomizeButtons();
         }
         else if (escena == "BDM_Auction")
         {
             boardScript.SetupScene(escena);
 
             // NEED TO CHANGE THE TIME HERE
-            tiempo = 20;
+            tiempo = timeAuction;
             totalTime = tiempo;
             showTimer = true;
 
@@ -293,10 +304,9 @@ public class GameManager : MonoBehaviour
             boardScript.SetupScene(escena);
 
             // NEED TO CHANGE THE TIME HERE
-            tiempo = 20;
+            tiempo = timeAuction;
             totalTime = tiempo;
             showTimer = true;
-
         }
     }
 
@@ -332,31 +342,70 @@ public class GameManager : MonoBehaviour
     //If the file doesn't exist it creates it. Otherwise it adds on lines to the existing file.
     //Each line in the File has the following structure: "trial;answer;timeSpent".
     // itemsSelected in the final solutions (irrespective if it was submitted); xycorrdinates; Error message if any.".
-    public static void save(int answer, float timeSpent, int randomYes, string error)
+    public static void save(float timeSpent, string error)
     {
-
-        //string xyCoordinates = instance.boardScript.getItemCoordinates ();//BoardManager.getItemCoordinates ();
-        string xyCoordinates = BoardManager.getItemCoordinates();
-
-        //Get the instance n umber for this trial and add 1 because the instanceRandomization is linked to array numbering in C#, which starts at 0;
-        int instanceNum = instanceRandomization[TotalTrials - 1] + 1;
-
-        int solutionQ = kinstances[instanceNum - 1].solution;
-        int correct = (solutionQ == answer) ? 1 : 0;
-
-
-        string dataTrialText = block + ";" + trial + ";" + answer + ";" + correct + ";" + timeSpent + ";" + randomYes + ";" + instanceNum + ";" + xyCoordinates + ";"
-            + error;
-
-        string[] lines = { dataTrialText };
-        string folderPathSave = Application.dataPath + outputFolder;
-
-        //This location can be used by unity to save a file if u open the game in any platform/computer:      Application.persistentDataPath;
-
-        using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TrialInfo.txt", true))
+        if (escena == "LikertScale")
         {
-            foreach (string line in lines)
-                outputFile.WriteLine(line);
+            // Reverse buttons is 1 if no/yes; 0 if yes/no
+            string dataTrialText = GameManager.block + ";" + escena + ";" + BoardManager.selected_button + ";NA;" + timeSpent + ";NA;NA;NA;" + error;
+
+
+            //Debug.Log("DATA TEXT: "+dataTrialText);
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
+
+        }
+        else if (escena == "BDM_Auction")
+        {
+            // Reverse buttons is 1 if no/yes; 0 if yes/no
+            string dataTrialText = GameManager.block + ";" + escena + ";" + BoardManager.subjectBid + ";" + BoardManager.computerBid +";" + timeSpent + ";NA;NA;NA;" + error;
+
+
+            //Debug.Log("DATA TEXT: "+dataTrialText);
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
+
+        }
+        else if (GAMETYPE == "k")
+        {
+            string xyCoordinates = BoardManager.getItemCoordinates();
+
+            solutionQ = kinstances[BoardManager.randInstance - 1].solution;
+            correct = (solutionQ == BoardManager.answer) ? 1 : 0;
+
+            // Reverse buttons is 1 if no/yes; 0 if yes/no
+            string dataTrialText = GameManager.block + ";" + GameManager.trial + ";" + solutionQ + ";" + BoardManager.answer + ";" + correct
+                 + ";" + timeSpent + ";" + BoardManager.randomYes + ";" + BoardManager.randInstance + ";" + GameManager.pay + ";"
+                + xyCoordinates + ";" + feedbackOn + ";" + error;
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
+        }
+        else if (GAMETYPE == "s")
+        {
+            solutionQ = sinstances[BoardManager.randInstance - 1].solution;
+            correct = (solutionQ == BoardManager.answer) ? 1 : 0;
+
+            // Reverse buttons is 1 if no/yes; 0 if yes/no
+            string dataTrialText = GameManager.block + ";" + GameManager.trial + ";" + solutionQ + ";" + BoardManager.answer + ";" + correct
+                 + ";" + timeSpent + ";" + BoardManager.randInstance + ";" + GameManager.pay + ";" + feedbackOn + ";" + error;
+
+
+            //Debug.Log("DATA TEXT: "+dataTrialText);
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
         }
 
         //Options of streamwriter include: Write, WriteLine, WriteAsync, WriteLineAsync
@@ -368,17 +417,13 @@ public class GameManager : MonoBehaviour
     /// Event type: 1=ItemsWithQuestion;2=AnswerScreen;3=InterTrialScreen;4=InterBlockScreen;5=EndScreen
     public static void saveTimeStamp(string eventType)
     {
+        string dataTrialText = GameManager.block + ";" + GameManager.trial +
+            ";" + eventType + ";" + GameManager.timeStamp();
 
-        string dataTrialText = block + ";" + trial + ";" + eventType + ";" + timeStamp();
-
-        string[] lines = { dataTrialText };
-        string folderPathSave = Application.dataPath + outputFolder;
-
-        //This location can be used by unity to save a file if u open the game in any platform/computer:      Application.persistentDataPath;
-        using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TimeStamps.txt", true))
+        using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+            Identifier + "TimeStamps.txt", true))
         {
-            foreach (string line in lines)
-                outputFile.WriteLine(line);
+            outputFile.WriteLine(dataTrialText);
         }
     }
 
@@ -390,29 +435,88 @@ public class GameManager : MonoBehaviour
     private static void saveHeaders()
     {
 
-        identifierName = participantID + "_" + dateID + "_" + "Dec" + "_";
-        string folderPathSave = Application.dataPath + outputFolder;
+        Identifier = participantID + "_" + dateID + "_";
 
-
-        if (GAMETYPE == "k")
+        if (GAMETYPE == "s")
         {
             //Saves InstanceInfo
-            string[] lines3 = new string[numberOfInstances + 2];
+            //an array of string, a new variable called lines3
+            string[] lines3 = new string[4 + GameManager.numberOfInstances];
             lines3[0] = "PartcipantID:" + participantID;
-            lines3[1] = "instanceNumber" + ";c" + ";p" + ";w" + ";v" + ";id" + ";type" + ";sol";
-            int l = 2;
+            lines3[1] = "RandID:" + randomisationID;
+            lines3[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines3[3] = "instanceNumber;left;right;answer";
+            int l = 4;
             int ksn = 1;
-            foreach (KInstance ks in kinstances)
+            foreach (SInstance si in GameManager.sinstances)
             {
-                //Without instance type and problem ID:
-                //lines [l] = "Instance:" + ksn + ";c=" + ks.capacity + ";p=" + ks.profit + ";w=" + string.Join (",", ks.weights.Select (p => p.ToString ()).ToArray ()) + ";v=" + string.Join (",", ks.values.Select (p => p.ToString ()).ToArray ());
                 //With instance type and problem ID
-                lines3[l] = ksn + ";" + ks.capacity + ";" + ks.profit + ";" + string.Join(",", ks.weights.Select(p => p.ToString()).ToArray()) + ";" + string.Join(",", ks.values.Select(p => p.ToString()).ToArray())
+                lines3[l] = ksn + ";" + si.LeftBox + ";" + si.RightBox + ";" +
+                    si.solution;
+                l++;
+                ksn++;
+            }
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "InstancesInfo.txt", true))
+            {
+                foreach (string line in lines3)
+                    outputFile.WriteLine(line);
+            }
+
+            // Trial Info file headers
+            string[] lines = new string[4];
+            lines[0] = "PartcipantID:" + participantID;
+            lines[1] = "RandID:" + randomisationID;
+            lines[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines[3] = "block;trial;solution;answer;correct;timeSpent;" +
+                "instanceNumber;pay;feedbackON;error";
+
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
+            {
+                foreach (string line in lines)
+                    outputFile.WriteLine(line);
+            }
+
+            // Time Stamps file headers
+            string[] lines1 = new string[4];
+            lines1[0] = "PartcipantID:" + participantID;
+            lines1[1] = "RandID:" + randomisationID;
+            lines1[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines1[3] = "block;trial;eventType;elapsedTime";
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TimeStamps.txt", true))
+            {
+                foreach (string line in lines1)
+                    outputFile.WriteLine(line);
+            }
+        }
+
+        else if (GAMETYPE == "k")
+        {
+            //Saves InstanceInfo
+            //an array of string, a new variable called lines3
+            string[] lines3 = new string[4 + GameManager.numberOfInstances];
+            lines3[0] = "PartcipantID:" + participantID;
+            lines3[1] = "RandID:" + randomisationID;
+            lines3[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines3[3] = "instanceNumber;capacity;profit;weights;values;id;type;sol";
+            int l = 4;
+            int ksn = 1;
+            foreach (KInstance ks in GameManager.kinstances)
+            {
+                //With instance type and problem ID
+                lines3[l] = ksn + ";" + ks.capacity + ";" + ks.profit + ";" +
+                    string.Join(",", ks.weights.Select(p => p.ToString()).ToArray()) +
+                    ";" + string.Join(",", ks.values.Select(p => p.ToString()).ToArray())
                     + ";" + ks.id + ";" + ks.type + ";" + ks.solution;
                 l++;
                 ksn++;
             }
-            using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "InstancesInfo.txt", true))
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "InstancesInfo.txt", true))
             {
                 foreach (string line in lines3)
                     outputFile.WriteLine(line);
@@ -420,29 +524,57 @@ public class GameManager : MonoBehaviour
 
 
             // Trial Info file headers
-            string[] lines = new string[2];
+            string[] lines = new string[4];
             lines[0] = "PartcipantID:" + participantID;
-            lines[1] = "block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error";
-            using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TrialInfo.txt", true))
+            lines[1] = "RandID:" + randomisationID;
+            lines[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines[3] = "block;trial;solution;answer;correct;timeSpent;ReverseButtons;instanceNumber;pay;" +
+                "xyCoordinates;feedbackON;error";
+
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TrialInfo.txt", true))
             {
                 foreach (string line in lines)
                     outputFile.WriteLine(line);
             }
 
             // Time Stamps file headers
-            string[] lines1 = new string[3];
+            string[] lines1 = new string[4];
             lines1[0] = "PartcipantID:" + participantID;
-            lines1[1] = "InitialTimeStamp:" + initialTimeStamp;
-            lines1[2] = "block;trial;eventType;elapsedTime";
-            using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TimeStamps.txt", true))
+            lines1[1] = "RandID:" + randomisationID;
+            lines1[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            lines1[3] = "block;trial;eventType;elapsedTime";
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TimeStamps.txt", true))
             {
                 foreach (string line in lines1)
                     outputFile.WriteLine(line);
             }
 
+            //// Headers for Clicks file
+            //string[] lines2 = new string[4];
+            //lines2[0] = "PartcipantID:" + participantID;
+            //lines2[1] = "RandID:" + randomisationID;
+            //lines2[2] = "InitialTimeStamp:" + GameManager.initialTimeStamp;
+            //lines2[3] = "block;trial;itemnumber(100=Reset);Out(0)/In(1)/Reset(2)/Other;time";
+            //using (StreamWriter outputFile = new StreamWriter(folderPathSave + Identifier + "Clicks.txt", true))
+            //{
+            //    WriteToFile(outputFile, lines2);
+            //}
         }
     }
 
+    // Helper function to write lines to an outputfile
+    private static void WriteToFile(StreamWriter outputFile, string[] lines)
+    {
+        foreach (string line in lines)
+        {
+            outputFile.WriteLine(line);
+        }
+
+        outputFile.Close();
+    }
     /*
 	 * Loads all of the instances to be uploaded form .txt files. Example of input file:
 	 * Name of the file: i3.txt
@@ -665,16 +797,11 @@ public class GameManager : MonoBehaviour
         numberOfTrials = int.Parse(numberOfTrialsS);
         numberOfBlocks = int.Parse(numberOfBlocksS);
         numberOfInstances = int.Parse(numberOfInstancesS);
-        int[] instanceRandomizationNo0 = Array.ConvertAll(instanceRandomizationS.Substring(1, instanceRandomizationS.Length - 2).Split(','), int.Parse);
+        instanceRandomization = Array.ConvertAll(instanceRandomizationS.Substring(1, instanceRandomizationS.Length - 2).Split(','), int.Parse);
+
+        Debug.Log(instanceRandomization[0]);
         FeedbackList = Array.ConvertAll(feedbackS.Substring(1, feedbackS.Length - 2).Split(','), int.Parse);
-
-        instanceRandomization = new int[instanceRandomizationNo0.Length];
-        //foreach (int i in instanceRandomizationNo0)
-        for (int i = 0; i < instanceRandomizationNo0.Length; i++)
-        {
-            instanceRandomization[i] = instanceRandomizationNo0[i] - 1;
-        }
-
+        
         ////Assigns LayoutParameters
         dictionary.TryGetValue("columns", out string columnsS);
         dictionary.TryGetValue("rows", out string rowsS);
@@ -683,37 +810,9 @@ public class GameManager : MonoBehaviour
         BoardManager.rows = int.Parse(rowsS);
     }
 
-    //Randomizes The Location of the Yes/No button for a whole block.
-    void randomizeButtons()
-    {
-
-        buttonRandomization = new int[numberOfTrials];
-
-        List<int> buttonRandomizationTemp = new List<int>();
-
-        for (int i = 0; i < numberOfTrials; i++)
-        {
-            if (i % 2 == 0)
-            {
-                buttonRandomizationTemp.Add(0);
-            }
-            else
-            {
-                buttonRandomizationTemp.Add(1);
-            }
-        }
-
-        for (int i = 0; i < numberOfTrials; i++)
-        {
-            int randomIndex = Random.Range(0, buttonRandomizationTemp.Count);
-            buttonRandomization[i] = buttonRandomizationTemp[randomIndex];
-            buttonRandomizationTemp.RemoveAt(randomIndex);
-        }
-
-    }
 
     //Takes care of changing the Scene to the next one (Except for when in the setup scene)
-    public static void changeToNextScene(int answer, int randomYes, int skipped)
+    public static void changeToNextScene(int skipped)
     {
         BoardManager.keysON = false;
         if (escena == "SetUp")
@@ -728,6 +827,7 @@ public class GameManager : MonoBehaviour
             else if (GAMETYPE == "s")
             {
                 loadSamplingInstance();
+                saveHeaders();
                 SceneManager.LoadScene("TrialSampling");
             }
         }
@@ -745,21 +845,15 @@ public class GameManager : MonoBehaviour
         }
         else if (escena == "TrialSampling")
         {
-            if (skipped == 1)
+            if (BoardManager.answer != 2)
             {
-                timeTaken = timeQuestion - tiempo;
+                saveTimeStamp("ParticipantAnswer");
             }
-            else
-            {
-                timeTaken = timeQuestion;
-            }
-
             SceneManager.LoadScene("InterTrialRest");
         }
         else if (escena == "TrialAnswer")
         {
-            save(answer, timeTaken, randomYes, "");
-            if (answer != 2)
+            if (BoardManager.answer != 2)
             {
                 saveTimeStamp("ParticipantAnswer");
             }
@@ -767,37 +861,18 @@ public class GameManager : MonoBehaviour
         }
         else if (escena == "InterTrialRest")
         {
-            // Save participant answer
             // Calc Perf
-            performance = 0;
+            perf.Add(correct);
 
-            if (GAMETYPE == "k")
-            {
-
-                if (kinstances[BoardManager.currInstance].solution == answer)
-                {
-                    performance = 1;
-                }
-            }
-            else if (GAMETYPE == "s")
-            {
-
-                if (sinstances[BoardManager.currInstance].solution == answer)
-                {
-                    performance = 1;
-                }
-            }
-
-            perf.Add(performance);
-
-            pay = 3f * performance;
+            pay = payPerTrial * correct;
 
             paylist.Add(pay);
 
             payAmount += pay;
             Debug.Log("current pay: $" + payAmount);
 
-            //SaveTrialInfo(answer, timeTaken);
+            // Save participant answer
+            save(timeTaken, "");
 
             changeToNextTrial();
         }
@@ -814,6 +889,9 @@ public class GameManager : MonoBehaviour
         }
         else if (escena == "LikertScale")
         {
+            save(timeTaken, "");
+            saveTimeStamp("ParticipantAnswer");
+
             if (first_scene_done == 0)
             {
 
@@ -846,6 +924,9 @@ public class GameManager : MonoBehaviour
 
         else if (escena == "BDM_Auction")
         {
+            save(timeTaken, "");
+            saveTimeStamp("ParticipantAnswer");
+
             if (first_scene_done == 0)
             {
 
@@ -924,9 +1005,9 @@ public class GameManager : MonoBehaviour
         Debug.Log(errorDetails);
 
         BoardManager.keysON = false;
-        int answer = 3;
-        int randomYes = -1;
-        save(answer, timeQuestion, randomYes, errorDetails);
+        BoardManager.answer = 3;
+        BoardManager.randomYes = -1;
+        save(timeQuestion, errorDetails);
         changeToNextTrial();
     }
 
@@ -946,11 +1027,10 @@ public class GameManager : MonoBehaviour
     /// Calculates time elapsed
     /// </summary>
     /// <returns>The time elapsed in milliseconds since the "setTimeStamp()".</returns>
-    private static string timeStamp()
+    public static string timeStamp()
     {
         long milliSec = stopWatch.ElapsedMilliseconds;
-        string stamp = milliSec.ToString();
-        return stamp;
+        return (milliSec / 1000f).ToString();
     }
 
 
@@ -968,7 +1048,7 @@ public class GameManager : MonoBehaviour
         if (escena == "TrialSampling" && tiempo < 0 && dotshown == false)
         {
             BoardManager.keysON = true;
-            tiempo = 999.0f;
+            tiempo = timeSampling;
             totalTime = tiempo;
 
             GameObject[] items1 = GameObject.FindGameObjectsWithTag("Item");
@@ -983,7 +1063,7 @@ public class GameManager : MonoBehaviour
         //When the time runs out:
         else if (tiempo < 0)
         {
-            changeToNextScene(BoardManager.answer, BoardManager.randomYes, 0);
+            changeToNextScene(0);
         }
 
     }

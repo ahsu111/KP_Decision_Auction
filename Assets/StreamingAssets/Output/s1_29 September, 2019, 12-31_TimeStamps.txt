@@ -1,0 +1,5 @@
+PartcipantID:s1
+RandID:1
+InitialTimeStamp:12-32-02-268
+block;trial;eventType;elapsedTime
+1;1;TrialSampling;0.11

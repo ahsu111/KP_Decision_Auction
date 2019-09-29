@@ -1,0 +1,6 @@
+PartcipantID:s5
+RandID:5
+InitialTimeStamp:11-38-44-691
+block;trial;solution;answer;correct;timeSpent;instanceNumber;pay;
+1;1;1;1;1;-973.6428;31;0;
+1;2;0;1;0;-973.7105;38;0;

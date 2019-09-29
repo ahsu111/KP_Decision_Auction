@@ -54,6 +54,9 @@ public class BoardManager : MonoBehaviour
 
     public static string question;
 
+    // to record current instance number
+    public static int randInstance;
+
     //Should the key be working?
     public static bool keysON = false;
 
@@ -68,22 +71,20 @@ public class BoardManager : MonoBehaviour
         public GameObject gameItem;
         public Vector2 center;
         public int ItemNumber;
-        public Button ItemButton;
     }
 
     //The items for the scene are stored here.
     private static Item[] items;
 
 
-    // Current Instance number
-    public static int currInstance;
-
+    // Input fields, this helps with auto focus later on
+    public static InputField pID;
 
     // Vars relating to BDM Auction
     public static float subjectBid;
     public static float computerBid;
 
-    public static float maxNum = 2.0f;
+    public static float maxNum = -1f;
 
     public static GameObject subbar;
     public static GameObject subbid;
@@ -166,25 +167,6 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    //Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.
-    void RandomizeButtons()
-    {
-        Button btnLeft = GameObject.Find("LEFTbutton").GetComponent<Button>();
-        Button btnRight = GameObject.Find("RIGHTbutton").GetComponent<Button>();
-
-        randomYes = GameManager.buttonRandomization[GameManager.trial - 1];
-
-        if (randomYes == 1)
-        {
-            btnLeft.GetComponentInChildren<Text>().text = "No";
-            btnRight.GetComponentInChildren<Text>().text = "Yes";
-        }
-        else
-        {
-            btnLeft.GetComponentInChildren<Text>().text = "Yes";
-            btnRight.GetComponentInChildren<Text>().text = "No";
-        }
-    }
 
     //Initializes the instance for this trial:
     //1. Sets the question string using the instance (from the .txt files)
@@ -193,11 +175,11 @@ public class BoardManager : MonoBehaviour
     void setKnapsackInstance()
     {
 
-        int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
-        question = "$" + GameManager.kinstances[randInstance].profit + System.Environment.NewLine + GameManager.kinstances[randInstance].capacity + "kg?";
+        randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
+        question = "$" + GameManager.kinstances[randInstance - 1].profit + System.Environment.NewLine + GameManager.kinstances[randInstance - 1].capacity + "kg?";
 
-        ws = GameManager.kinstances[randInstance].weights;
-        vs = GameManager.kinstances[randInstance].values;
+        ws = GameManager.kinstances[randInstance - 1].weights;
+        vs = GameManager.kinstances[randInstance - 1].values;
 
         KSItemPrefab = (GameObject)Resources.Load("KSItem3");
 
@@ -349,10 +331,13 @@ public class BoardManager : MonoBehaviour
                 GameManager.feedbackOn = false;
             }
 
+            //InitialiseList();
+            randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
+
             //  Instance information
             Debug.Log("Setting up  Instance: Block " + (GameManager.block) + "/" + GameManager.numberOfBlocks +
                 ", Trial " + GameManager.trial + "/" + GameManager.numberOfTrials + " , Total Trial " +
-                GameManager.TotalTrials + " , Current Instance " + (GameManager.instanceRandomization[GameManager.TotalTrials - 1] + 1) +
+                GameManager.TotalTrials + " , Current Instance " + randInstance +
                 " , Feedback " + GameManager.feedbackOn);
 
             setKnapsackInstance();
@@ -395,15 +380,18 @@ public class BoardManager : MonoBehaviour
             {
                 GameManager.feedbackOn = false;
             }
+            Debug.Log(GameManager.TotalTrials);
+            Debug.Log(GameManager.instanceRandomization[GameManager.TotalTrials]);
+
+            //InitialiseList();
+            randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
 
             //  Instance information
             Debug.Log("Setting up  Instance: Block " + (GameManager.block) + "/" + GameManager.numberOfBlocks +
                 ", Trial " + GameManager.trial + "/" + GameManager.numberOfTrials + " , Total Trial " +
-                GameManager.TotalTrials + " , Current Instance " + (GameManager.instanceRandomization[GameManager.TotalTrials - 1] + 1) + 
+                GameManager.TotalTrials + " , Current Instance " + randInstance + 
                 " , Feedback " + GameManager.feedbackOn);
 
-            //InitialiseList();
-            int randInstance = GameManager.instanceRandomization[GameManager.TotalTrials - 1];
 
             Debug.Log(randInstance);
             DotPrefab = (GameObject)Resources.Load("whiteDot");
@@ -417,8 +405,8 @@ public class BoardManager : MonoBehaviour
                 Destroy(item);
             }
 
-            leftbox = GameManager.sinstances[randInstance].LeftBox;
-            rightbox = GameManager.sinstances[randInstance].RightBox;
+            leftbox = GameManager.sinstances[randInstance - 1].LeftBox;
+            rightbox = GameManager.sinstances[randInstance - 1].RightBox;
 
             InitialiseListSamplingTask();
 
@@ -429,7 +417,7 @@ public class BoardManager : MonoBehaviour
         {
             answer = 2;
             setKnapsackInstance();
-            RandomizeButtons();
+            randomizeButtons();
             keysON = true;
 
             //1234
@@ -439,6 +427,16 @@ public class BoardManager : MonoBehaviour
 
         else if (sceneToSetup == "BDM_Auction")
         {
+            if (GameManager.GAMETYPE == "s")
+            {
+                maxNum = 1f;
+                GameObject.Find("upper_max").GetComponent<Text>().text = "1.0";
+                GameObject.Find("lower_max").GetComponent<Text>().text = "1.0";
+            }
+            else if (GameManager.GAMETYPE == "k")
+            {
+                maxNum = 2f;
+            }
             keysON = true;
             auction_finished = false;
 
@@ -623,7 +621,7 @@ public class BoardManager : MonoBehaviour
         timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
     }
 
-    private void answerCheck(int correct)
+    public static void answerCheck(int correct)
     {
         if (correct == 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
@@ -660,10 +658,80 @@ public class BoardManager : MonoBehaviour
         }
         else
         {
-            GameManager.changeToNextScene(0, 0, 1);
+            GameManager.changeToNextScene(1);
         }
     }
 
+
+    //Randomizes The Location of the Yes/No button for a whole block.
+    public static void randomizeButtons()
+    {
+        Button btnLeft = GameObject.Find("LEFTbutton").GetComponent<Button>();
+        Button btnRight = GameObject.Find("RIGHTbutton").GetComponent<Button>();
+
+        btnLeft.onClick.AddListener(delegate {
+            AnswerSelect("left");
+        });
+        btnRight.onClick.AddListener(delegate {
+            AnswerSelect("right");
+        });
+
+        BoardManager.randomYes = Random.Range(0, 2);
+
+        if (BoardManager.randomYes == 1)
+        {
+            btnLeft.GetComponentInChildren<Text>().text = "No";
+            btnRight.GetComponentInChildren<Text>().text = "Yes";
+        }
+        else
+        {
+            btnLeft.GetComponentInChildren<Text>().text = "Yes";
+            btnRight.GetComponentInChildren<Text>().text = "No";
+        }
+    }
+
+    public static void AnswerSelect(string LeftOrRight)
+    {
+        if (LeftOrRight == "left")
+        {
+            keysON = false;
+
+            answer = new List<int>() { 0, 1 }[randomYes];
+
+            GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
+            highlightButton(boto);
+            //GameManager.changeToNextScene (1,0,2);
+
+
+            GameObject.Find("LEFTbutton").SetActive(false);
+            GameObject.Find("RIGHTbutton").SetActive(false);
+
+            GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
+            GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
+
+            answerCheck(GameManager.correct);
+        }
+        else if (LeftOrRight == "right")
+        {
+            //Right
+            keysON = false;
+
+            answer = new List<int>() { 1, 0 }[randomYes];
+
+            GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
+            highlightButton(boto);
+            //GameManager.changeToNextScene (0,0,2);
+
+
+            GameObject.Find("LEFTbutton").SetActive(false);
+            GameObject.Find("RIGHTbutton").SetActive(false);
+
+            GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
+            GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
+
+            answerCheck(GameManager.correct);
+        }
+    }
     //Sets the triggers for pressing the corresponding keys
     //123: Perhaps a good practice thing to do would be to create a "close scene" function that takes as parameter the answer and closes everything (including keysON=false) and then forwards to 
     //changeToNextScene(answer) on game manager
@@ -675,7 +743,7 @@ public class BoardManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 GameManager.saveTimeStamp("ParticipantSkip");
-                GameManager.changeToNextScene(0, 0, 1);
+                GameManager.changeToNextScene(1);
             }
         }
         if (GameManager.escena == "TrialSampling")
@@ -684,23 +752,28 @@ public class BoardManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                GameManager.timeTaken = GameManager.timeSampling - GameManager.tiempo;
+
                 //Left
                 keysON = false;
 
-                answer = new List<int>() { 0, 1 }[randomYes];
+                answer = 0;
 
-                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+                GameManager.solutionQ = GameManager.sinstances[randInstance - 1].solution;
+                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
-                answerCheck(correct);
+                answerCheck(GameManager.correct);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                GameManager.timeTaken = GameManager.timeSampling - GameManager.tiempo;
+
                 //Right
                 keysON = false;
 
-                answer = new List<int>() { 1, 0 }[randomYes];
+                answer = 1;
 
-                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+                int correct = (GameManager.sinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1] - 1].solution == answer) ? 1 : 0;
 
                 answerCheck(correct);
             }
@@ -711,7 +784,6 @@ public class BoardManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                //Left
                 keysON = false;
 
                 answer = new List<int>() { 0, 1 }[randomYes];
@@ -724,9 +796,10 @@ public class BoardManager : MonoBehaviour
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
 
-                int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
-
-                answerCheck(correct);
+                GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
+                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
+                
+                answerCheck(GameManager.correct);
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
@@ -743,9 +816,10 @@ public class BoardManager : MonoBehaviour
                 GameObject.Find("LEFTbutton").SetActive(false);
                 GameObject.Find("RIGHTbutton").SetActive(false);
 
-                int correct = (GameManager.kinstances[GameManager.instanceRandomization[GameManager.TotalTrials - 1]].solution == answer) ? 1 : 0;
+                GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
+                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
-                answerCheck(correct);
+                answerCheck(GameManager.correct);
             }
         }
         else if (GameManager.escena == "SetUp")
@@ -753,7 +827,7 @@ public class BoardManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 GameManager.setTimeStamp();
-                GameManager.changeToNextScene(0, 0, 2);
+                GameManager.changeToNextScene(2);
             }
         }
         else if (GameManager.escena == "BDM_Auction")
@@ -781,6 +855,8 @@ public class BoardManager : MonoBehaviour
 
             if (!auction_finished && Input.GetKeyDown(KeyCode.UpArrow))
             {
+                GameManager.timeTaken = GameManager.timeAuction - GameManager.tiempo;
+
                 subjectBid = Convert.ToSingle((subjectBid).ToString("0.#"));
 
                 computerBid = Convert.ToSingle((maxNum * UnityEngine.Random.Range(0.0f, 1.0f)).ToString("0.#"));
@@ -826,6 +902,8 @@ public class BoardManager : MonoBehaviour
         }
         else if (GameManager.escena == "LikertScale")
         {
+            GameManager.timeTaken = GameManager.timeAuction - GameManager.tiempo;
+
             if (!auction_finished && Input.GetKeyDown(KeyCode.UpArrow))
             {
                 //for (int btnNum = 0; btnNum <= 5; btnNum++)
@@ -858,7 +936,7 @@ public class BoardManager : MonoBehaviour
     }
 
 
-    private void highlightButton(GameObject butt)
+    public static void highlightButton(GameObject butt)
     {
         Text texto = butt.GetComponentInChildren<Text>();
         texto.color = Color.gray;
@@ -872,7 +950,7 @@ public class BoardManager : MonoBehaviour
         start.SetActive(false);
 
         //Participant Input
-        InputField pID = GameObject.Find("ParticipantID").GetComponent<InputField>();
+        pID = GameObject.Find("ParticipantID").GetComponent<InputField>();
 
         InputField.SubmitEvent se = new InputField.SubmitEvent();
         //se.AddListener(submitPID(start));
@@ -934,6 +1012,10 @@ public class BoardManager : MonoBehaviour
             setKeyInput();
         }
 
+        if (GameManager.escena == "SetUp")
+        {
+            pID.ActivateInputField();
+        }
     }
 
 
