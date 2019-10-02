@@ -7,22 +7,22 @@ number_of_instance_files = 50
 for j in range(1, number_of_instance_files + 1):
     f = open("K%r_param2.txt" % j,"w+")
 
-
     f.write("numberOfTrials:10\n")
     f.write("numberOfBlocks:8\n")
     
-    f.write("numberOfInstances:40\n")
+    f.write("numberOfInstances:80\n")
 
 
-    more_list = list(range(4))
 
-    more_list2 = more_list.copy()
+    more_list = list(range(0,8,2))
+
+    more_list2 = list(range(1,8,2))
 
     shuffle(more_list)
 
     shuffle(more_list2)
 
-    total_list = [[x, 0] for x in more_list] + [[z, 1] for z in more_list2] 
+    total_list = [[x, 0] for x in more_list] + [[z, 1] for z in more_list2]
     shuffle(total_list)
     print(total_list)
     y=[]
@@ -43,7 +43,9 @@ for j in range(1, number_of_instance_files + 1):
     print(FB)
     f.write(FB)
     
+    
     f.close()
+
 
 for j in range(1, number_of_instance_files + 1):
     f = open("S%r_param2.txt" % j,"w+")
@@ -62,7 +64,7 @@ for j in range(1, number_of_instance_files + 1):
 
     shuffle(more_list2)
 
-    total_list = [[x, 0] for x in more_list] + [[z, 1] for z in more_list2] 
+    total_list = [[x, 0] for x in more_list] + [[z, 1] for z in more_list2]
     shuffle(total_list)
     print(total_list)
     y=[]

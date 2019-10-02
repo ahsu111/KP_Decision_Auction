@@ -968,6 +968,16 @@ public class BoardManager : MonoBehaviour
         //Set Participant ID
         GameManager.GAMETYPE = pIDs.Substring(0, 1).ToLower();
 
+
+        if (GameManager.GAMETYPE == "k")
+        {
+            GameManager.payPerTrial = 0.4f;
+        }
+        else if (GameManager.GAMETYPE == "s")
+        {
+            GameManager.payPerTrial = 0.2f;
+        }
+
         Debug.Log(GameManager.GAMETYPE);
 
         //Activate Start Button and listener

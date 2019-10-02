@@ -115,15 +115,17 @@ public class GameManager : MonoBehaviour
     // A list of floats to record participant performance
     // Performance should always be equal to or greater than 1.
     // Due to the way it's calculated (participant answer/optimal solution), performance closer to 1 is better.
-    public static List<double> perf = new List<double>();
-    public static double performance;
-    public static List<double> paylist = new List<double>();
-    public static double pay;
+    public static List<float> perf = new List<float>();
+    public static float performance;
+    public static List<float> paylist = new List<float>();
+    public static float pay;
 
     // Keep track of total payment
     // Default value is the show up fee
-    public static double payAmount = 8.00;
-    public static double payPerTrial = 3.00;
+    public static float payAmount = 8f;
+
+    // this value is set in the boardmanager submitpid function
+    public static float payPerTrial = -1f;
 
     public static int solutionQ;
     public static int correct;
@@ -213,6 +215,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("escena " + escena);
         if (escena == "SetUp")
         {
+
             //Only uploads parameters and instances once.
             block++;
             boardScript.setupInitialScreen();
@@ -373,7 +376,8 @@ public class GameManager : MonoBehaviour
         else if (escena == "BDM_Auction")
         {
             // Reverse buttons is 1 if no/yes; 0 if yes/no
-            string dataTrialText = GameManager.block + ";" + escena + ";" + BoardManager.subjectBid + ";" + BoardManager.computerBid +";" + timeSpent + ";NA;NA;NA;" + error;
+            string dataTrialText = GameManager.block + ";" + escena + ";" + BoardManager.subjectBid + ";" + BoardManager.computerBid +";" + timeSpent + ";NA;NA;" + GameManager.pay + ";"
+                + error;
 
 
             //Debug.Log("DATA TEXT: "+dataTrialText);
@@ -429,13 +433,38 @@ public class GameManager : MonoBehaviour
     /// Event type: 1=ItemsWithQuestion;2=AnswerScreen;3=InterTrialScreen;4=InterBlockScreen;5=EndScreen
     public static void saveTimeStamp(string eventType)
     {
-        string dataTrialText = GameManager.block + ";" + GameManager.trial +
-            ";" + eventType + ";" + GameManager.timeStamp();
-
-        using (StreamWriter outputFile = new StreamWriter(folderPathSave +
-            Identifier + "TimeStamps.txt", true))
+        if (escena == "LikertScale")
         {
-            outputFile.WriteLine(dataTrialText);
+            string dataTrialText = GameManager.block + ";" + escena +
+                ";" + GameManager.timeStamp();
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TimeStamps.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
+        }
+        else if (escena == "BDM_Auction")
+        {
+            string dataTrialText = GameManager.block + ";" + escena +
+                ";" + GameManager.timeStamp();
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TimeStamps.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
+        }
+        else
+        {
+            string dataTrialText = GameManager.block + ";" + GameManager.trial +
+                ";" + eventType + ";" + GameManager.timeStamp();
+
+            using (StreamWriter outputFile = new StreamWriter(folderPathSave +
+                Identifier + "TimeStamps.txt", true))
+            {
+                outputFile.WriteLine(dataTrialText);
+            }
         }
     }
 
@@ -936,9 +965,28 @@ public class GameManager : MonoBehaviour
 
         else if (escena == "BDM_Auction")
         {
+            // Calc Pay
+            if (BoardManager.subjectBid < BoardManager.computerBid)
+            {
+                pay = 0f;
+            }
+            else if (BoardManager.subjectBid > BoardManager.computerBid)
+            {
+                pay = BoardManager.maxNum - BoardManager.computerBid;
+            }
+            else
+            {
+                pay = -999f;
+            }
+
+            paylist.Add(pay);
+
+            payAmount += pay;
+            Debug.Log("current pay after Auction: $" + payAmount);
+
             save(timeTaken, "");
             saveTimeStamp("ParticipantAnswer");
-
+            
             if (first_scene_done == 0)
             {
 

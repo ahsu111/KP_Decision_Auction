@@ -1,2 +1,1 @@
 To do list:
-1. change timestamps output; say bdm auction and likert
