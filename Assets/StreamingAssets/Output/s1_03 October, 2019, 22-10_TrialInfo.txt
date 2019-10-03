@@ -1,0 +1,4 @@
+PartcipantID:s1
+RandID:1
+InitialTimeStamp:22-10-05-464
+block;trial;solution;answer;correct;timeSpent;instanceNumber;pay;feedbackON;error

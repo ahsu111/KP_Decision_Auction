@@ -98,7 +98,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\StreamingAssets\Python\S24_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-31_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s10.txt" />
     <None Include="Assets\StreamingAssets\Python\K43_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\S9_param2.txt" />
@@ -106,6 +105,7 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k63.txt" />
     <None Include="Assets\StreamingAssets\Python\k48.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K39_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\s10_03 October, 2019, 22-09_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s37.txt" />
     <None Include="Assets\StreamingAssets\Python\s12.txt" />
     <None Include="Assets\StreamingAssets\Python\k19.txt" />
@@ -141,6 +141,7 @@
     <None Include="Assets\StreamingAssets\Python\k68.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k42.txt" />
+    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 22-10_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K2_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k11.txt" />
     <None Include="Assets\StreamingAssets\Python\S18_param2.txt" />
@@ -152,7 +153,6 @@
     <None Include="Assets\StreamingAssets\Python\S42_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k64.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s27.txt" />
-    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 21-34_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s40.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S29_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k27.txt" />
@@ -223,7 +223,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\S34_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k5.txt" />
     <None Include="Assets\StreamingAssets\Python\k51.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-33_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k26.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k36.txt" />
@@ -233,7 +232,6 @@
     <None Include="Assets\StreamingAssets\Python\K19_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k25.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s16.txt" />
-    <None Include="Assets\StreamingAssets\Output\k10_03 October, 2019, 20-45_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\K41_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s28.txt" />
     <None Include="Assets\StreamingAssets\Python\k32.txt" />
@@ -266,7 +264,6 @@
     <None Include="Assets\StreamingAssets\Python\S17_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\S31_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s29.txt" />
-    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 21-34_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\K38_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k22.txt" />
     <None Include="Assets\StreamingAssets\Python\k43.txt" />
@@ -286,10 +283,13 @@
     <None Include="Assets\StreamingAssets\Python\s1.txt" />
     <None Include="Assets\StreamingAssets\Python\k53.txt" />
     <None Include="Assets\StreamingAssets\Python\k59.txt" />
+    <None Include="Assets\StreamingAssets\Output\s5_03 October, 2019, 22-10_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\k15.txt" />
     <None Include="Assets\StreamingAssets\Python\S44_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 22-10_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k59.txt" />
     <None Include="Assets\StreamingAssets\Python\K15_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 22-10_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\S3_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\S43_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K4_param2.txt" />
@@ -308,7 +308,6 @@
     <None Include="Assets\StreamingAssets\Python\K50_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K13_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\S37_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k10_03 October, 2019, 20-45_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K10_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\K47_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\K18_param2.txt" />
@@ -321,10 +320,10 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\s26.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k16.txt" />
     <None Include="Assets\StreamingAssets\Python\k40.txt" />
+    <None Include="Assets\StreamingAssets\Output\s10_03 October, 2019, 22-09_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S18_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k30.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k4.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-33_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\K4_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k1.txt" />
     <None Include="Assets\StreamingAssets\Python\s7.txt" />
@@ -356,7 +355,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k38.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald-Bold - OFL.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S25_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-31_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\K28_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k11.txt" />
     <None Include="Assets\StreamingAssets\Python\S12_param2.txt" />
@@ -382,7 +380,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K8_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S20_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s18.txt" />
-    <None Include="Assets\StreamingAssets\Output\s1_03 October, 2019, 21-34_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\S35_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s24.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
@@ -396,8 +393,10 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\S31_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\s16.txt" />
     <None Include="Assets\StreamingAssets\Python\S5_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\s5_03 October, 2019, 22-10_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\s27.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k67.txt" />
+    <None Include="Assets\StreamingAssets\Output\s5_03 October, 2019, 22-10_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\K5_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k23.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k74.txt" />
@@ -426,7 +425,6 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\k32.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k40.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k14.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-31_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S14_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k30.txt" />
     <None Include="Assets\StreamingAssets\Python\K16_param2.txt" />
@@ -515,7 +513,7 @@
     <None Include="Assets\StreamingAssets\Python\k7.txt" />
     <None Include="Assets\StreamingAssets\Python\k1.txt" />
     <None Include="Assets\StreamingAssets\Python\K48_param2.txt" />
-    <None Include="Assets\StreamingAssets\Output\k1_03 October, 2019, 21-33_InstancesInfo.txt" />
+    <None Include="Assets\StreamingAssets\Output\s10_03 October, 2019, 22-09_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\K32_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S50_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\K34_param2.txt" />
@@ -548,7 +546,6 @@
     <None Include="Assets\StreamingAssets\Python\k45.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k39.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k73.txt" />
-    <None Include="Assets\StreamingAssets\Output\k10_03 October, 2019, 20-45_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K20_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S37_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\k65.txt" />

@@ -625,7 +625,7 @@ public class BoardManager : MonoBehaviour
     {
         if (correct == 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
-            GameManager.Result1.GetComponent<Text>().text = "Your answer is correct";
+            GameManager.Result1.GetComponent<Text>().text = "Correct";
             GameManager.Result1.GetComponent<Text>().color = Color.green;
 
 
@@ -643,7 +643,7 @@ public class BoardManager : MonoBehaviour
         }
         else if (correct != 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
-            GameManager.Result1.GetComponent<Text>().text = "Your answer is incorrect";
+            GameManager.Result1.GetComponent<Text>().text = "Incorrect";
             GameManager.Result1.GetComponent<Text>().color = Color.red;
 
             if (GameManager.GAMETYPE == "k")

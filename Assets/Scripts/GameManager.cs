@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     public static float timeAuction = 999.0f;
 
     //Time given for answering
-    public static float timeAnswer = 3;
+    public static float timeAnswer = 3f;
     public static bool dotshown = false;
 
     //Time to display sampling dots
@@ -158,7 +158,8 @@ public class GameManager : MonoBehaviour
         public int solution;
     }
 
-    public static int first_scene_done = 0;
+    public static bool first_scene_done = false;
+    public static bool both_scenes_done = false;
 
     public static bool feedbackOn = false;
 
@@ -170,6 +171,8 @@ public class GameManager : MonoBehaviour
 
     // To record the type of game, KP or Sampling
     public static string GAMETYPE = "GAME TYPE NOT SET";
+
+    public static bool notrecordedrest = false; 
 
     // Use this for initialization
     void Awake()
@@ -275,8 +278,16 @@ public class GameManager : MonoBehaviour
 
             }
 
-            tiempo = Random.Range(timeRest1min, timeRest1max);
-            totalTime = tiempo;
+            if ((trial != 5 || both_scenes_done) && trial != numberOfTrials)
+            {
+                tiempo = Random.Range(timeRest1min, timeRest1max);
+                totalTime = tiempo;
+            }
+            else
+            {
+                tiempo = 0.01f;
+                totalTime = tiempo;
+            }
         }
         else if (escena == "InterBlockRest")
         {
@@ -902,7 +913,7 @@ public class GameManager : MonoBehaviour
         else if (escena == "InterTrialRest")
         {
             Debug.Log(block + "   " + trial);
-            if (!(block == 1 && trial == 0))
+            if (!(trial == 0) && !notrecordedrest)
             {
                 // Calc Perf
                 perf.Add(correct);
@@ -917,6 +928,7 @@ public class GameManager : MonoBehaviour
                 // Save participant answer
                 save(timeTaken, "");
             }
+            notrecordedrest = false;
 
             changeToNextTrial();
         }
@@ -924,11 +936,11 @@ public class GameManager : MonoBehaviour
         {
             if (GAMETYPE == "k")
             {
-                SceneManager.LoadScene("TrialKP");
+                SceneManager.LoadScene("InterTrialRest");
             }
             else if (GAMETYPE == "s")
             {
-                SceneManager.LoadScene("TrialSampling");
+                SceneManager.LoadScene("InterTrialRest");
             }
         }
         else if (escena == "LikertScale")
@@ -936,10 +948,9 @@ public class GameManager : MonoBehaviour
             save(timeTaken, "");
             saveTimeStamp("ParticipantAnswer");
 
-            if (first_scene_done == 0)
+            if (first_scene_done == false)
             {
-
-                first_scene_done = 1;
+                first_scene_done = true;
                 SceneManager.LoadScene("BDM_Auction");
             }
             else if (BoardManager.subjectBid > BoardManager.computerBid)
@@ -957,11 +968,15 @@ public class GameManager : MonoBehaviour
             {
                 if (GAMETYPE == "k")
                 {
-                    SceneManager.LoadScene("TrialKP");
+                    notrecordedrest = true;
+                    both_scenes_done = true;
+                    SceneManager.LoadScene("InterTrialRest");
                 }
                 else if (GAMETYPE == "s")
                 {
-                    SceneManager.LoadScene("TrialSampling");
+                    notrecordedrest = true;
+                    both_scenes_done = true;
+                    SceneManager.LoadScene("InterTrialRest");
                 }
             }
         }
@@ -990,10 +1005,9 @@ public class GameManager : MonoBehaviour
             save(timeTaken, "");
             saveTimeStamp("ParticipantAnswer");
             
-            if (first_scene_done == 0)
+            if (first_scene_done == false)
             {
-
-                first_scene_done = 1;
+                first_scene_done = true;
                 SceneManager.LoadScene("LikertScale");
             }
             else if (BoardManager.subjectBid > BoardManager.computerBid)
@@ -1011,11 +1025,15 @@ public class GameManager : MonoBehaviour
             {
                 if (GAMETYPE == "k")
                 {
-                    SceneManager.LoadScene("TrialKP");
+                    notrecordedrest = true;
+                    both_scenes_done = true;
+                    SceneManager.LoadScene("InterTrialRest");
                 }
                 else if (GAMETYPE == "s")
                 {
-                    SceneManager.LoadScene("TrialSampling");
+                    notrecordedrest = true;
+                    both_scenes_done = true;
+                    SceneManager.LoadScene("InterTrialRest");
                 }
             }
         }
@@ -1032,9 +1050,10 @@ public class GameManager : MonoBehaviour
         //Checks if trials are over
         if (trial < numberOfTrials)
         {
-            if (trial == 5)
+            if (trial == 5 && !both_scenes_done)
             {
-                first_scene_done = 0;
+                first_scene_done = false;
+                both_scenes_done = false;
                 int rand_scene = Random.Range(0, 2);
 
                 SceneManager.LoadScene(new List<string>() { "BDM_Auction", "LikertScale" }[rand_scene]);
