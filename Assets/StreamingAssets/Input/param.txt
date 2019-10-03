@@ -2,4 +2,4 @@ timeRest1min:1.2
 timeRest1max:1.2
 timeRest2:3
 timeQuestion:25
-timeAnswer:1
+timeAnswer:2

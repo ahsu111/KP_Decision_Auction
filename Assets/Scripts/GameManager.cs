@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     //Time given for each trial (The total time the items are shown -With and without the question-)
     public static float timeQuestion = 10.0f;
-    public static float timeSampling = 999.0f;
+    public static float timeSampling = 2.0f;
     public static float timeAuction = 999.0f;
 
     //Time given for answering
@@ -231,7 +231,6 @@ public class GameManager : MonoBehaviour
 
             tiempo = timeQuestion;
             totalTime = timeQuestion;
-
         }
         else if (escena == "TrialSampling")
         {
@@ -863,13 +862,13 @@ public class GameManager : MonoBehaviour
             {
                 loadKPInstance();
                 saveHeaders();
-                SceneManager.LoadScene("TrialKP");
+                SceneManager.LoadScene("InterTrialRest");
             }
             else if (GAMETYPE == "s")
             {
                 loadSamplingInstance();
                 saveHeaders();
-                SceneManager.LoadScene("TrialSampling");
+                SceneManager.LoadScene("InterTrialRest");
             }
         }
         else if (escena == "TrialKP")
@@ -902,18 +901,22 @@ public class GameManager : MonoBehaviour
         }
         else if (escena == "InterTrialRest")
         {
-            // Calc Perf
-            perf.Add(correct);
+            Debug.Log(block + "   " + trial);
+            if (!(block == 1 && trial == 0))
+            {
+                // Calc Perf
+                perf.Add(correct);
 
-            pay = payPerTrial * correct;
+                pay = payPerTrial * correct;
 
-            paylist.Add(pay);
+                paylist.Add(pay);
 
-            payAmount += pay;
-            Debug.Log("current pay: $" + payAmount);
+                payAmount += pay;
+                Debug.Log("current pay: $" + payAmount);
 
-            // Save participant answer
-            save(timeTaken, "");
+                // Save participant answer
+                save(timeTaken, "");
+            }
 
             changeToNextTrial();
         }
