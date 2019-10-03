@@ -219,6 +219,7 @@ public class GameManager : MonoBehaviour
         if (escena == "SetUp")
         {
 
+            both_scenes_done = false;
             //Only uploads parameters and instances once.
             block++;
             boardScript.setupInitialScreen();
@@ -285,15 +286,25 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                tiempo = 0.01f;
+                tiempo = 0f;
                 totalTime = tiempo;
             }
         }
         else if (escena == "InterBlockRest")
         {
+            both_scenes_done = false;
             trial = 0;
             block++;
             showTimer = true;
+
+            if (GAMETYPE == "s")
+            {
+                GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = Color.white;
+
+                GameObject.Find("Text").GetComponent<Text>().color = Color.black;
+
+            }
+
             tiempo = timeRest2;
             totalTime = tiempo;
         }
