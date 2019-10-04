@@ -1,5 +1,0 @@
-PartcipantID:s1
-RandID:1
-InitialTimeStamp:22-10-05-464
-block;trial;eventType;elapsedTime
-1;1;ParticipantAnswer;1.962

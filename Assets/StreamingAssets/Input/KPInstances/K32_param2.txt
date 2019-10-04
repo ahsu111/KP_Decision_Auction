@@ -1,5 +1,5 @@
 numberOfTrials:10
-numberOfBlocks:1
-numberOfInstances:10
-instanceRandomization:[2,3,7,1,9,6,4,5,8,10]
-feedback:[1]
+numberOfBlocks:8
+numberOfInstances:80
+instanceRandomization:[26,30,23,22,24,27,21,28,25,29,56,58,55,53,60,54,59,51,57,52,68,70,64,66,61,65,69,63,67,62,49,42,46,50,43,45,47,48,44,41,2,1,6,9,4,7,10,3,5,8,74,79,72,77,78,75,80,71,73,76,31,38,39,35,37,32,40,33,34,36,16,18,12,13,19,14,15,20,17,11]
+feedback:[0,1,0,0,0,1,1,1]

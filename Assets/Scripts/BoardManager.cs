@@ -696,16 +696,15 @@ public class BoardManager : MonoBehaviour
         {
             keysON = false;
 
-            answer = new List<int>() { 0, 1 }[randomYes];
-
-            GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
-            highlightButton(boto);
-
-            GameObject.Find("LEFTbutton").SetActive(false);
-            GameObject.Find("RIGHTbutton").SetActive(false);
+            answer = new List<int>() { 1, 0 }[randomYes];
 
             GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
             GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
+
+            Debug.Log(GameManager.solutionQ + LeftOrRight + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
+
+            GameObject.Find("LEFTbutton").SetActive(false);
+            GameObject.Find("RIGHTbutton").SetActive(false);
 
             answerCheck(GameManager.correct);
         }
@@ -714,16 +713,16 @@ public class BoardManager : MonoBehaviour
             //Right
             keysON = false;
 
-            answer = new List<int>() { 1, 0 }[randomYes];
+            answer = new List<int>() { 0, 1 }[randomYes];
 
-            GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
-            highlightButton(boto);
+            GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
+            GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
+
+            Debug.Log(GameManager.solutionQ + LeftOrRight + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
 
             GameObject.Find("LEFTbutton").SetActive(false);
             GameObject.Find("RIGHTbutton").SetActive(false);
 
-            GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
-            GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
             answerCheck(GameManager.correct);
         }
@@ -781,37 +780,11 @@ public class BoardManager : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                keysON = false;
-
-                answer = new List<int>() { 0, 1 }[randomYes];
-
-                GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
-                highlightButton(boto);
-
-                GameObject.Find("LEFTbutton").SetActive(false);
-                GameObject.Find("RIGHTbutton").SetActive(false);
-
-                GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
-                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
-                
-                answerCheck(GameManager.correct);
+                AnswerSelect("left");
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                //Right
-                keysON = false;
-
-                answer = new List<int>() { 1, 0 }[randomYes];
-
-                GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
-                highlightButton(boto);
-                GameObject.Find("LEFTbutton").SetActive(false);
-                GameObject.Find("RIGHTbutton").SetActive(false);
-
-                GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
-                GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
-
-                answerCheck(GameManager.correct);
+                AnswerSelect("right");
             }
         }
         else if (GameManager.escena == "SetUp")
