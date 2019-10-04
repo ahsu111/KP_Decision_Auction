@@ -625,10 +625,6 @@ public class BoardManager : MonoBehaviour
     {
         if (correct == 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
-            GameManager.Result1.GetComponent<Text>().text = "Correct";
-            GameManager.Result1.GetComponent<Text>().color = Color.green;
-
-
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", CORRECT ANSWER");
             if (GameManager.GAMETYPE == "k")
@@ -638,14 +634,19 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
+                GameObject.Find("leftSquare").SetActive(false);
+                GameObject.Find("rightSquare").SetActive(false);
+                GameManager.ResultBox.SetActive(true);
                 GameManager.tiempo = timeshownanswer;
             }
+            GameManager.Result1.GetComponent<Text>().text = "Correct";
+            GameManager.Result1.GetComponent<Text>().color = Color.green;
+
         }
         else if (correct != 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
-            GameManager.Result1.GetComponent<Text>().text = "Incorrect";
-            GameManager.Result1.GetComponent<Text>().color = Color.red;
-
+            Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
+                GameManager.trial) + ", INCORRECT ANSWER");
             if (GameManager.GAMETYPE == "k")
             {
                 GameManager.showTimer = false;
@@ -653,8 +654,14 @@ public class BoardManager : MonoBehaviour
             }
             else
             {
+                GameObject.Find("leftSquare").SetActive(false);
+                GameObject.Find("rightSquare").SetActive(false);
+                GameManager.ResultBox.SetActive(true);
                 GameManager.tiempo = timeshownanswer;
             }
+            GameManager.Result1.GetComponent<Text>().text = "Incorrect";
+            GameManager.Result1.GetComponent<Text>().color = Color.red;
+
         }
         else
         {

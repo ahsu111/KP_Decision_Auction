@@ -60,15 +60,15 @@ public class GameManager : MonoBehaviour
     //Time given for each trial (The total time the items are shown -With and without the question-)
     public static float timeQuestion = 10.0f;
     public static float timeSampling = 2.0f;
-    public static float timeAuction = 999.0f;
-
-    //Time given for answering
-    public static float timeAnswer = 3f;
-    public static bool dotshown = false;
+    public static float timeAuction = 20.0f;
 
     //Time to display sampling dots
     public static float timedots = 0.3f;
 
+    //Time given for answering
+    public static float timeAnswer = 3f;
+    public static bool dotshown = false;
+    
     //Total number of trials in each block
     public static int numberOfTrials = 30;
 
@@ -109,8 +109,9 @@ public class GameManager : MonoBehaviour
     public static string folderPathLoad;
     public static string folderPathLoadInstances;
     public static string folderPathSave;
-    
+
     public static GameObject Result1;
+    public static GameObject ResultBox;
 
     // A list of floats to record participant performance
     // Performance should always be equal to or greater than 1.
@@ -248,6 +249,10 @@ public class GameManager : MonoBehaviour
             Result1 = GameObject.Find("ResultText");
 
             Result1.GetComponent<Text>().text = "";
+
+            ResultBox = GameObject.Find("ResultRectangle");
+
+            GameObject.Find("ResultRectangle").SetActive(false);
 
             boardScript.SetupScene(escena);
 
