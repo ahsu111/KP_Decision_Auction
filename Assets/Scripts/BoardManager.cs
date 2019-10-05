@@ -419,10 +419,6 @@ public class BoardManager : MonoBehaviour
             setKnapsackInstance();
             randomizeButtons();
             keysON = true;
-
-            //1234
-            //			InitialiseList ();
-            //			seeGrid();
         }
 
         else if (sceneToSetup == "BDM_Auction")
@@ -623,7 +619,7 @@ public class BoardManager : MonoBehaviour
 
     public static void answerCheck(int correct)
     {
-        if (correct == 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
+        if (correct == 1)// && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", CORRECT ANSWER");
@@ -636,14 +632,20 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject.Find("leftSquare").SetActive(false);
                 GameObject.Find("rightSquare").SetActive(false);
-                GameManager.ResultBox.SetActive(true);
-                GameManager.tiempo = timeshownanswer;
             }
-            GameManager.Result1.GetComponent<Text>().text = "Correct";
+
+            GameManager.tiempo = timeshownanswer;
+
+            GameManager.ResultBox.SetActive(true);
+
+            if (GameManager.feedbackOn)
+            {
+                GameManager.Result1.GetComponent<Text>().text = "Correct";
+            }
             GameManager.Result1.GetComponent<Text>().color = Color.green;
 
         }
-        else if (correct != 1 && GameManager.trial <= 5 && GameManager.feedbackOn)
+        else if (correct != 1)// && GameManager.trial <= 5 && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", INCORRECT ANSWER");
@@ -656,12 +658,16 @@ public class BoardManager : MonoBehaviour
             {
                 GameObject.Find("leftSquare").SetActive(false);
                 GameObject.Find("rightSquare").SetActive(false);
-                GameManager.ResultBox.SetActive(true);
-                GameManager.tiempo = timeshownanswer;
             }
-            GameManager.Result1.GetComponent<Text>().text = "Incorrect";
-            GameManager.Result1.GetComponent<Text>().color = Color.red;
 
+            GameManager.tiempo = timeshownanswer;
+
+            GameManager.ResultBox.SetActive(true);
+            if (GameManager.feedbackOn)
+            {
+                GameManager.Result1.GetComponent<Text>().text = "Incorrect";
+            }
+            GameManager.Result1.GetComponent<Text>().color = Color.red;
         }
         else
         {

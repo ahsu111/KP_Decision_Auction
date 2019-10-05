@@ -262,12 +262,19 @@ public class GameManager : MonoBehaviour
         else if (escena == "TrialAnswer")
         {
             showTimer = true;
-            boardScript.SetupScene(escena);
+
             Result1 = GameObject.Find("ResultText");
+
+            Result1.GetComponent<Text>().text = "";
+
+            ResultBox = GameObject.Find("ResultRectangle");
+
+            GameObject.Find("ResultRectangle").SetActive(false);
+
+            boardScript.SetupScene(escena);
 
             //Debug.Log(Result1);
             //Result1.SetActive(false);
-            Result1.GetComponent<Text>().text = "";
 
             tiempo = timeAnswer;
             totalTime = timeAnswer;
