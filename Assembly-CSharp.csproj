@@ -206,6 +206,7 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\S38_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\S16_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k2.txt" />
+    <None Include="Assets\StreamingAssets\Output\k5_06 October, 2019, 14-40_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k47.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\k6.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K46_param2.txt" />
@@ -263,6 +264,7 @@
     <None Include="Assets\StreamingAssets\Python\Practice\K6_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\K15_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\K41_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\k5_06 October, 2019, 14-40_TrialInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\K12_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\k32.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\K2_param2.txt" />
@@ -486,8 +488,10 @@
     <None Include="Assets\StreamingAssets\Python\Practice\S8_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\S16_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k35.txt" />
+    <None Include="Assets\StreamingAssets\Output\k5_06 October, 2019, 14-40_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\s10.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\s9.txt" />
+    <None Include="Assets\StreamingAssets\Output\k3_06 October, 2019, 14-41_TrialInfo.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\K44_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\k12.txt" />
@@ -505,6 +509,7 @@
     <None Include="Assets\StreamingAssets\Input\KPInstances\K45_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K35_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\k34.txt" />
+    <None Include="Assets\StreamingAssets\Output\k3_06 October, 2019, 14-41_TimeStamps.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\k1.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\K26_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\K5_param2.txt" />
@@ -517,6 +522,7 @@
     <None Include="Assets\StreamingAssets\Python\Practice\S42_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\K16_param2.txt" />
     <None Include="Assets\StreamingAssets\Python\Practice\S10_param2.txt" />
+    <None Include="Assets\StreamingAssets\Output\k3_06 October, 2019, 14-41_InstancesInfo.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\s39.txt" />
     <None Include="Assets\StreamingAssets\Python\Actual Experiment\K23_param2.txt" />
     <None Include="Assets\StreamingAssets\Input\KPInstances\k15.txt" />

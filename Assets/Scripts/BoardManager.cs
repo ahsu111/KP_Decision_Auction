@@ -619,7 +619,7 @@ public class BoardManager : MonoBehaviour
 
     public static void answerCheck(int correct)
     {
-        if (correct == 1)// && GameManager.trial <= 5 && GameManager.feedbackOn)
+        if (correct == 1 && GameManager.trial <= 5)// && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", CORRECT ANSWER");
@@ -645,7 +645,7 @@ public class BoardManager : MonoBehaviour
             GameManager.Result1.GetComponent<Text>().color = Color.green;
 
         }
-        else if (correct != 1)// && GameManager.trial <= 5 && GameManager.feedbackOn)
+        else if (correct != 1 && GameManager.trial <= 5)//  && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", INCORRECT ANSWER");
