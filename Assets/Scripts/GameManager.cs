@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
     //Time given for each trial (The total time the items are shown -With and without the question-)
     public static float timeQuestion = 10.0f;
     public static float timeSampling = 2.0f;
-    public static float timeAuction = 20.0f;
+    public static float timeAuction = 999.0f;
 
     //Time to display sampling dots
     public static float timedots = 0.3f;
@@ -130,6 +130,8 @@ public class GameManager : MonoBehaviour
 
     public static int solutionQ;
     public static int correct;
+
+    public static int Trial_Before_Auction = 10;
 
     //A structure that contains the parameters of each instance
     public struct KInstance
@@ -291,7 +293,7 @@ public class GameManager : MonoBehaviour
 
             }
 
-            if ((trial != 5 || both_scenes_done) && trial != numberOfTrials)
+            if ((trial != Trial_Before_Auction || both_scenes_done) && trial != numberOfTrials)
             {
                 tiempo = Random.Range(timeRest1min, timeRest1max);
                 totalTime = tiempo;
@@ -340,20 +342,18 @@ public class GameManager : MonoBehaviour
         {
             boardScript.SetupScene(escena);
 
-            // NEED TO CHANGE THE TIME HERE
             tiempo = timeAuction;
             totalTime = tiempo;
-            showTimer = true;
+            showTimer = false;
 
         }
         else if (escena == "LikertScale")
         {
             boardScript.SetupScene(escena);
 
-            // NEED TO CHANGE THE TIME HERE
             tiempo = timeAuction;
             totalTime = tiempo;
-            showTimer = true;
+            showTimer = false;
         }
     }
 
@@ -1073,7 +1073,7 @@ public class GameManager : MonoBehaviour
         //Checks if trials are over
         if (trial < numberOfTrials)
         {
-            if (trial == 5 && !both_scenes_done)
+            if (trial == Trial_Before_Auction && !both_scenes_done)
             {
                 first_scene_done = false;
                 both_scenes_done = false;

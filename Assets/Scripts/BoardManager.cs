@@ -619,7 +619,7 @@ public class BoardManager : MonoBehaviour
 
     public static void answerCheck(int correct)
     {
-        if (correct == 1 && GameManager.trial <= 5)// && GameManager.feedbackOn)
+        if (correct == 1 && GameManager.trial <= GameManager.Trial_Before_Auction)// && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", CORRECT ANSWER");
@@ -645,7 +645,7 @@ public class BoardManager : MonoBehaviour
             GameManager.Result1.GetComponent<Text>().color = Color.green;
 
         }
-        else if (correct != 1 && GameManager.trial <= 5)//  && GameManager.feedbackOn)
+        else if (correct != 1 && GameManager.trial <= GameManager.Trial_Before_Auction)//  && GameManager.feedbackOn)
         {
             Debug.Log("Trial number " + ((GameManager.block - 1) * GameManager.numberOfTrials +
                 GameManager.trial) + ", INCORRECT ANSWER");
@@ -860,7 +860,7 @@ public class BoardManager : MonoBehaviour
                     auctionResult.color = Color.green;
 
                     GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
+                    //GameObject.Find("Timer").SetActive(false);
                 }
 
                 else
@@ -869,7 +869,7 @@ public class BoardManager : MonoBehaviour
                     auctionResult.color = Color.red;
 
                     GameManager.showTimer = false;
-                    GameObject.Find("Timer").SetActive(false);
+                    //GameObject.Find("Timer").SetActive(false);
                 }
 
                 auction_finished = true;
@@ -903,7 +903,7 @@ public class BoardManager : MonoBehaviour
                 GameManager.totalTime = GameManager.tiempo;
 
                 GameManager.showTimer = false;
-                GameObject.Find("Timer").SetActive(false);
+                //GameObject.Find("Timer").SetActive(false);
 
 
                 auction_finished = true;

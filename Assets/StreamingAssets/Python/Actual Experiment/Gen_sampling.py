@@ -1,11 +1,11 @@
 from random import shuffle
 import random
 
-number_of_unique_instances = 40
+number_of_unique_instances = 30
 
 base = 313
 
-more_list = [24, 35, 46, 58]
+more_list = [24, 58] #35, 46, 
 
 #more_list2 = more_list.copy()
 
@@ -18,7 +18,7 @@ total_list = [i + base for i in more_list] #+ [j + base for j in more_list2]
 print(total_list)
 
 for j in range(1, number_of_unique_instances + 1):
-    dots_left_right = [313, total_list[(j-1)//10]]
+    dots_left_right = [313, total_list[(j-1)//15]]
 
     shuffle(dots_left_right)
     

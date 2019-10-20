@@ -1,0 +1,16 @@
+PartcipantID:s3
+RandID:3
+InitialTimeStamp:21-05-41-352
+block;trial;solution;answer;correct;timeSpent;instanceNumber;pay;feedbackON;error
+1;1;0;0;1;0.2712005;30;0.2;True;
+1;2;0;0;1;0.2673848;25;0.2;True;
+1;3;1;1;1;0.1375301;16;0.2;True;
+1;4;1;1;1;0.1192477;24;0.2;True;
+1;5;0;1;0;0.03287184;28;0;True;
+1;6;1;1;1;0.1021227;19;0.2;True;
+1;7;0;1;0;0.01734066;22;0;True;
+1;8;1;1;1;0.02055275;17;0.2;True;
+1;9;1;1;1;0.341012;27;0.2;True;
+1;10;1;1;1;0.1604738;26;0.2;True;
+1;BDM_Auction;0.4399999;0;0.1604738;NA;NA;1;
+1;LikertScale;3;NA;1.212603;NA;NA;NA;
