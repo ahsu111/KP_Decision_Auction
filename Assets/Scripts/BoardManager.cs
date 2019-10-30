@@ -714,7 +714,7 @@ public class BoardManager : MonoBehaviour
             GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
             GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
-            Debug.Log(GameManager.solutionQ + LeftOrRight + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
+            Debug.Log("Solution is: " + GameManager.solutionQ + " you selected: " + LeftOrRight + " Answer is: " + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
 
             GameObject.Find("LEFTbutton").SetActive(false);
             GameObject.Find("RIGHTbutton").SetActive(false);
@@ -731,7 +731,7 @@ public class BoardManager : MonoBehaviour
             GameManager.solutionQ = GameManager.kinstances[randInstance - 1].solution;
             GameManager.correct = (GameManager.solutionQ == BoardManager.answer) ? 1 : 0;
 
-            Debug.Log(GameManager.solutionQ + LeftOrRight + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
+            Debug.Log("Solution is: " + GameManager.solutionQ + " you selected: " + LeftOrRight + " Answer is: " + answer + "RANDOM YES (NO/YES if 1; YES/NO if 0): " + randomYes);
 
             GameObject.Find("LEFTbutton").SetActive(false);
             GameObject.Find("RIGHTbutton").SetActive(false);

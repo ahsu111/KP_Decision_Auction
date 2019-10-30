@@ -1,0 +1,7 @@
+weights:[[46,85,30,20,15,67]]
+values:[[53,85,84,78,68,26]]
+capacity:115
+profit:110
+problemID:124-0.44-0.28
+difficulty_level:3
+solution:1
