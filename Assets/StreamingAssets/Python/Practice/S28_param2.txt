@@ -1,5 +1,5 @@
 numberOfTrials:15
 numberOfBlocks:2
 numberOfInstances:30
-instanceRandomization:[11,8,3,9,12,15,4,2,1,7,5,6,13,14,10,28,30,25,26,29,20,22,18,17,24,19,27,23,16,21]
+instanceRandomization:[25,30,24,16,18,22,21,20,19,17,29,28,27,26,23,6,11,9,15,3,4,14,2,7,12,1,8,13,5,10]
 feedback:[1,0]

@@ -7,14 +7,19 @@ number_of_instance_files = 50
 trial_per_block = 15
 
 for j in range(1, number_of_instance_files + 1):
+    rand1 = list(range(1,61))
+    rand2 = list(range(61,121))
+
+    shuffle(rand1)
+
+    shuffle(rand2)
+    
     f = open("K%r_param2.txt" % j,"w+")
 
     f.write(f"numberOfTrials:{trial_per_block}\n")
     f.write("numberOfBlocks:8\n")
     
     f.write(f"numberOfInstances:{trial_per_block*8}\n")
-
-
 
     more_list = list(range(0,8,2))
 
@@ -30,11 +35,18 @@ for j in range(1, number_of_instance_files + 1):
     y=[]
     feedback = []
     for i in total_list:
-        temp_list = list(range(1, trial_per_block + 1))
-        shuffle(temp_list)
+        if (i[0]<4):
+            temp_list = list(range(trial_per_block))
+            shuffle(temp_list)
+            y = y + [rand1[i[0]*trial_per_block + j] for j in temp_list]
+            feedback.append(i[1])
+        else:
+            temp_list = list(range(trial_per_block))
+            shuffle(temp_list)
 
-        y = y + [i[0]*trial_per_block + j for j in temp_list]
-        feedback.append(i[1])
+            y = y + [rand2[(i[0]-4)*trial_per_block + j] for j in temp_list]
+            feedback.append(i[1])
+            
         
     KP = "instanceRandomization:[" + ",".join(str(num) for num in y) + "]\n"
     print(KP)
