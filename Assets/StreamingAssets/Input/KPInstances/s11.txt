@@ -1,3 +1,3 @@
-LeftBox:313
-RightBox:371
+LeftBox:300
+RightBox:335
 solution:1
