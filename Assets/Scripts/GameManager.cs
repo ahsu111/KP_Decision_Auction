@@ -698,9 +698,9 @@ public class GameManager : MonoBehaviour
             dict.TryGetValue("profit", out string profitS);
             dict.TryGetValue("solution", out string solutionS);
             Debug.Log(weightsS.Substring(2, weightsS.Length - 3));
-            kinstances[k - 1].weights = Array.ConvertAll(weightsS.Substring(2, weightsS.Length - 4).Split(','), int.Parse);
+            kinstances[k - 1].weights = Array.ConvertAll(weightsS.Substring(1, weightsS.Length - 2).Split(','), int.Parse);
 
-            kinstances[k - 1].values = Array.ConvertAll(valuesS.Substring(2, valuesS.Length - 4).Split(','), int.Parse);
+            kinstances[k - 1].values = Array.ConvertAll(valuesS.Substring(1, valuesS.Length - 2).Split(','), int.Parse);
 
             kinstances[k - 1].capacity = int.Parse(capacityS);
 

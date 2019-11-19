@@ -1,0 +1,14 @@
+PartcipantID:k6
+RandID:6
+InitialTimeStamp:00-33-25-680
+block;trial;eventType;elapsedTime
+1;1;ParticipantSkip;2.083
+1;1;ParticipantAnswer;4.068
+1;2;ParticipantSkip;5.684
+1;2;ParticipantAnswer;7.389
+1;3;ParticipantSkip;9.003
+1;3;ParticipantAnswer;10.722
+1;4;ParticipantSkip;12.46
+1;4;ParticipantAnswer;14.166
+1;5;ParticipantSkip;15.75
+1;5;ParticipantAnswer;17.456

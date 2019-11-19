@@ -1,0 +1,12 @@
+PartcipantID:k5
+RandID:5
+InitialTimeStamp:00-31-42-352
+block;trial;eventType;elapsedTime
+1;1;ParticipantSkip;4.046
+1;1;ParticipantAnswer;5.953
+1;2;ParticipantSkip;7.727
+1;2;ParticipantAnswer;9.518
+1;3;ParticipantSkip;11.181
+1;3;ParticipantAnswer;12.937
+1;4;ParticipantSkip;15.075
+1;4;ParticipantAnswer;16.936
